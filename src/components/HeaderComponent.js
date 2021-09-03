@@ -20,18 +20,18 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            isOpen: false
-        };
+        // this.state = {
+        //     isOpen: false
+        // };
 
-        this.toggle = this.toggle.bind(this);
+        // this.toggle = this.toggle.bind(this);
     }
 
-    toggle() {
-        this.setState({
-          isOpen: !this.state.isOpen
-        });
-      }
+    // toggle() {
+    //     this.setState({
+    //       isOpen: !this.state.isOpen
+    //     });
+    //   }
 
     render() {
         return (
@@ -49,13 +49,13 @@ class Header extends Component {
                     </NavbarBrand>
 
 
-                    <NavbarToggler onClick={this.toggle} type="Button" data-toggle="collapse"
+                    <NavbarToggler onClick={this.props.toggle} type="Button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation" id="toggler">
                         <span>MENU</span>
                     </NavbarToggler>
 
-                    <Collapse isOpen={this.state.isOpen} className="navbar-collapse" id="navbarSupportedContent" navbar>
+                    <Collapse isOpen={this.props.isOpen} className="navbar-collapse" id="navbarSupportedContent" navbar>
                         <Nav className="w-100 nav-justified" navbar>
 
                             <NavItem className="topLinks">
