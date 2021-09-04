@@ -4,17 +4,17 @@
 
 .card {
   margin: 5px;
-  flex-direction: row;
-  max-height: 100px;
-  overflow: hidden;
+  /* flex-direction: row; */
+  /* max-height: 100px;
+  overflow: hidden; */
 
 }
 
-.card img {
-  width: 200px; /* width of container */
-  height: 200px; /* height of container */
+ .card img {
+  width: 100px; 
+  height: 100px; 
   object-fit: cover;
-}
+} 
 
 .card-body {
   padding: 0;
@@ -24,15 +24,13 @@
 }
 
 .card-text {
-  /* display: flex; */
+
   margin: 0px;
 }
 
 .cardDist {
   margin-top: auto;
   margin-right: auto;
-  /* margin-left: 5px;
-  margin-bottom: 5px; */
 }
 
 .cbCont1 {

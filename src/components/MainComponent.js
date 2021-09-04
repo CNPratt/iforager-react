@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { globalObsArray, obsCardArray } from './ObservationComponent'
 import Header from './HeaderComponent';
+import ObsCard from './ObsCardComponent';
+import {getFile} from './GetFileFunctions'
+import {CardDisplay} from './ObservationComponent'
 
 
 class Main extends Component {
@@ -29,12 +31,12 @@ class Main extends Component {
         return (
             <div className="main">
                 <Header isOpen={this.state.isOpen} toggle={this.toggle} />
-                {obsCardArray}
+                <CardDisplay />
             </div>
         );
     }
 }
 
-console.log();
+// console.log(cardObj);
 
 export default Main;

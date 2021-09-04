@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import ObsCard from './ObsCardComponent';
+import {getFile} from './GetFileFunctions'
 
 let resultsObject;
 let lat;
 let lon;
 
 let obsArray = [];
+let cardArray = ["this", "that"];
+let cardObj;
 
 let currentIDs;
 let mushroomIDs = "48431,47348,56830,48496,53714";
@@ -13,18 +16,18 @@ let fruitIDs = "50900,83434,58736,54500,47351,60773,50999,47902,54297";
 let berryIDs = "50299,48353,47544,47130,64697";
 
 //  if(document.getElementById("mushroomDIV")) {
-//      currentIDs = mushroomIDs;
+      currentIDs = mushroomIDs;
 //  }
 
 //  if(document.getElementById("fruitDIV")) {
-     currentIDs = fruitIDs;
+//     currentIDs = fruitIDs;
 // }
 
 // if(document.getElementById("berryDIV")) {
 //     currentIDs = berryIDs;
 // }
 
-class Observation {
+export class Observation {
     constructor(name, species, genLocation, obsLat, obsLon, distance, url, image, createDate) {
         this.name = name;
         this.species = species;
@@ -36,81 +39,14 @@ class Observation {
         this.image = image.replace("square", "original");
         this.createDate = createDate;
     }
-
-    // createItem() {
-    //     let root = document.querySelector("#root");
-    //     let milesDistance = this.distance * 0.621371;
-    //     let mdString = milesDistance.toString();
-    //     let mdInt = parseFloat(mdString.slice(0, 4));
-
-    //     //console.log(mdInt);
-
-    //     let link = document.createElement("a");
-    //     link.setAttribute("href", this.url);
-    //     link.setAttribute("target", "blank");
-
-    //     let card = document.createElement("div");
-    //     card.className = "card";
-
-    //     let cardImg = document.createElement("img");
-    //     cardImg.className = "card-img-top";
-    //     //     console.log(this.image);
-    //     cardImg.src = this.image;
-
-    //     let cardBody = document.createElement("div");
-    //     cardBody.className = "card-body";
-
-    //     let cardTitle = document.createElement("h5");
-    //     cardTitle.className = "card-title";
-    //     cardTitle.innerText = this.species;
-
-    //     let cardSubTitle = document.createElement("h6");
-    //     cardSubTitle.className = "card-subtitle";
-    //     cardSubTitle.innerText = this.name;
-
-
-    //     let cardText = document.createElement("p");
-    //     cardText.className = "card-text";
-    //     cardText.innerText = `${this.genLocation}`;
-
-    //     let cardDist = document.createElement("div");
-    //     cardDist.className = "cardDist";
-    //     cardDist.innerText = `${mdInt} miles`;
-
-    //     let cardDate = document.createElement("div");
-    //     cardDate.className = "cardDate";
-    //     cardDate.innerText = `${this.createDate}`;
-
-    //     let cbCont1 = document.createElement("div");
-    //     cbCont1.className = "cbCont1";
-
-    //     let cbCont2 = document.createElement("div");
-    //     cbCont2.className = "cbCont2";
-
-    //     root.appendChild(card);
-    //     link.appendChild(cardImg);
-    //     card.appendChild(link);
-    //     card.appendChild(cardBody);
-    //     cardBody.appendChild(cbCont1);
-    //     cardBody.appendChild(cbCont2);
-    //     cbCont1.appendChild(cardTitle);
-    //     cbCont1.appendChild(cardSubTitle);
-    //     cbCont1.appendChild(cardText);
-    //     cbCont1.appendChild(cardDist);
-    //     cbCont2.appendChild(cardDate);
-
-    //     //    console.log("ran");
-    // }
 }
 
 function getLocation() {
+
+
     if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(positionRelay, positionError);
-    } else {
-        // x.innerHTML = "Geolocation is not supported by this browser.";
-
-        console.log("ran");
     }
 
     function positionError() {
@@ -133,79 +69,85 @@ function positionRelay(position) {
     Run();
 }
 
-getLocation();
+const updater = new CustomEvent('updateArray');
 
 function Run() {
 
-
     // root.innerHTML = "";
 
-    obsArray = [];
+    getFile(lat, lon, currentIDs).then((value) => {
+        obsArray = value;
+        // console.log(obsArray);
+        
+        cardArray = obsArray.map(obs => <ObsCard key={obs.url} observation={obs}/>);
 
-    const getFile = async () => {
-        const response = await fetch(
-            `
-            https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${currentIDs}&quality_grade=research&captive=false&lat=${lat}&lng=${lon}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
-      
-            `
-        );
-        const myJson = await response.json(); //extract JSON from the http response
-        // do something with myJson
+        console.log(cardArray);
 
-        resultsObject = myJson;
+         document.dispatchEvent(updater);
 
-        // console.log(resultsObject.results);
+      });
+}
 
-        resultsObject.results.forEach(element => {
 
-            function getDistance(lat1, lon1, lat2, lon2) {
 
-                function deg2rad(degrees) {
-                    var pi = Math.PI;
-                    return degrees * (pi / 180);
-                }
+function RenderCards(props){
+    if(props.cardArray) {
 
-                var R = 6371; // Radius of the earth in km
-                var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-                var dLon = deg2rad(lon2 - lon1);
-                var a =
-                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                    Math.sin(dLon / 2) * Math.sin(dLon / 2)
-                    ;
-                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                var d = R * c; // Distance in km
-                d = d * 0.621371; //km to miles
-                return d;
-            }
+            console.log(props.cardArray);
 
-            let coordSplit = element.location.split(",");
+           return props.cardArray;
+    } else {
+        return (<div></div>)
+    }
 
-            // console.log(coordSplit[0]);
+}
 
-            let thisLat = parseFloat(coordSplit[0]);
-            let thisLon = parseFloat(coordSplit[1]);
+export class CardDisplay extends Component {
+    constructor(props) {
+        super(props);
 
-            //         console.log(`${thisLat}, ${thisLon}`);
+        this.state = {
+            cards: cardArray
+        }
 
-            let distance = getDistance(thisLat, thisLon, lat, lon);
+        this.update = this.update.bind(this);
+    }
 
-            let thisObs = new Observation(element.taxon.name, element.taxon.preferred_common_name, element.place_guess, thisLat, thisLon, distance, element.uri, element.observation_photos[0].photo.url, element.created_at_details.date);
+    componentDidMount() {
+        document.addEventListener('updateArray', this.update)
+    }
 
-            obsArray.push(thisObs);
-        });
+    update() {
+        this.setState({
+            cards: cardArray
+        })
 
-        obsArray.sort((a, b) => (a.distance > b.distance) ? 1 : -1)
+        console.log('updated');
+    }
 
-        console.log(obsArray);
+    render() {
 
-        obsArray.forEach(element => {
+        document.getElementById('updater');
 
-            // element.createItem();
+        if(this.state.cards){
+            return (
+            <div className="row-fluid">
+                <div className="col">
+                 <RenderCards cardArray={this.state.cards} />
+                 <button onClick={this.update}> Click me! </button>
+                 </div>
+            </div>
+            )
+        } else {
+            return (<div>
+                <button onClick={this.update}> Click me! </button>
+            </div>)
+        }
 
-        });
     }
 }
+
+getLocation();
 
 // function inputRelay() {
 
@@ -225,6 +167,3 @@ function Run() {
 //         .then(response => lon = geocodedInput.lon)
 //         .then(geocodedInput => Run())
 // }
-
-export const globalObsArray = obsArray;
-export const obsCardArray = globalObsArray.map(obs => <ObsCard observation={obs}/>);

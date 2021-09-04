@@ -17,15 +17,15 @@ import {
 
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+        // super(props);
 
         // this.state = {
         //     isOpen: false
         // };
 
         // this.toggle = this.toggle.bind(this);
-    }
+    // }
 
     // toggle() {
     //     this.setState({

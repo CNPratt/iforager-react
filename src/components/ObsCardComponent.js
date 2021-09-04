@@ -10,17 +10,18 @@ class ObsCard extends Component {
     };
 
     render() {
+        // console.log(this.props);
         return (
-            <Card>
-                <a href={this.props.url} target="blank">
+            <Card key={this.props.observation.url} style={{display: 'flex', flexDirection: 'row'}}>
+                <a href={this.props.observation.url} target="blank">
                     <img className="card-img-top" src={this.props.observation.image} />
                 </a>
-                <CardBody>
+                <CardBody className="m-0 p-0">
                     <div className="cbCont1">
-                        <CardTitle>{this.props.observation.prefName}</CardTitle>
+                        <CardTitle>{this.props.observation.name}</CardTitle>
                         <CardSubtitle>{this.props.observation.species}</CardSubtitle>
-                        <CardText>{this.props.observation.location}</CardText>
-                    <div className="cardDist">{this.props.observation.distance}</div>
+                        <CardText>{this.props.observation.genLocation}</CardText>
+                        <div className="cardDist">{this.props.observation.distance}</div>
                     </div>
                     <div className="cbCont2">
                         <div className="cardDate">{this.props.observation.createDate}</div>
