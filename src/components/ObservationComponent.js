@@ -16,11 +16,11 @@ let fruitIDs = "50900,83434,58736,54500,47351,60773,50999,47902,54297";
 let berryIDs = "50299,48353,47544,47130,64697";
 
 //  if(document.getElementById("mushroomDIV")) {
-      currentIDs = mushroomIDs;
+//      currentIDs = mushroomIDs;
 //  }
 
 //  if(document.getElementById("fruitDIV")) {
-//     currentIDs = fruitIDs;
+     currentIDs = fruitIDs;
 // }
 
 // if(document.getElementById("berryDIV")) {
@@ -28,7 +28,7 @@ let berryIDs = "50299,48353,47544,47130,64697";
 // }
 
 export class Observation {
-    constructor(name, species, genLocation, obsLat, obsLon, distance, url, image, createDate) {
+    constructor(name, species, genLocation, obsLat, obsLon, distance, url, image, createDate, trueDistance) {
         this.name = name;
         this.species = species;
         this.genLocation = genLocation;
@@ -38,7 +38,14 @@ export class Observation {
         this.url = url;
         this.image = image.replace("square", "original");
         this.createDate = createDate;
+        this.trueDistance = trueDistance;
     }
+}
+
+export function idSwitcher(ids) {
+    currentIDs = ids;
+    console.log(currentIDs);
+    Run();
 }
 
 function getLocation() {
@@ -73,13 +80,18 @@ const updater = new CustomEvent('updateArray');
 
 function Run() {
 
-    // root.innerHTML = "";
+    obsArray = [];
+    cardArray = [];
+
+    console.log(cardArray);
 
     getFile(lat, lon, currentIDs).then((value) => {
         obsArray = value;
         // console.log(obsArray);
         
         cardArray = obsArray.map(obs => <ObsCard key={obs.url} observation={obs}/>);
+        
+        cardArray.sort((a, b) => (a.props.observation.trueDistance > b.props.observation.trueDistance) ? 1 : -1);
 
         console.log(cardArray);
 
@@ -93,7 +105,7 @@ function Run() {
 function RenderCards(props){
     if(props.cardArray) {
 
-            console.log(props.cardArray);
+            // console.log(props.cardArray);
 
            return props.cardArray;
     } else {
@@ -118,6 +130,7 @@ export class CardDisplay extends Component {
     }
 
     update() {
+        
         this.setState({
             cards: cardArray
         })
@@ -126,7 +139,7 @@ export class CardDisplay extends Component {
     }
 
     render() {
-
+        
         document.getElementById('updater');
 
         if(this.state.cards){

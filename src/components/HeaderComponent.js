@@ -14,6 +14,7 @@ import {
     // DropdownItem,
     // NavbarText
 } from 'reactstrap';
+import {idSwitcher} from './ObservationComponent';
 
 
 class Header extends Component {
@@ -59,7 +60,7 @@ class Header extends Component {
                         <Nav className="w-100 nav-justified" navbar>
 
                             <NavItem className="topLinks">
-                                <NavLink href="index.html">
+                                <NavLink href="#">
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         HOME
                                     </Button>
@@ -67,8 +68,8 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem className="topLinks">
-                                <NavLink href="mushrooms.html">
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                <NavLink href="#">
+                                    <Button onClick={() => idSwitcher("48431,47348,56830,48496,53714")}className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/mushroom.svg" /> */}
                                         MUSHROOMS
                                     </Button>
@@ -76,7 +77,7 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem className="topLinks">
-                                <NavLink href="fruit.html">
+                                <NavLink href="#">
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/fruit.svg" /> */}
                                         FRUIT
@@ -85,7 +86,7 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem className="topLinks">
-                                <NavLink href="berries.html">
+                                <NavLink href="#">
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <Img height="35px" width="35px" src="img/berry.svg" /> */}
                                         BERRIES
