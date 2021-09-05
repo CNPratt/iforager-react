@@ -2,6 +2,10 @@
   font-family: Federo;
 } */
 
+#display {
+  margin-top: 20px;
+}
+
 .card {
   margin: 5px;
   /* flex-direction: row; */
@@ -101,7 +105,7 @@ span {
 
   .card img {
     width: 100px; /* width of container */
-    height: 200px; /* height of container */
+    height: 100px; /* height of container */
     object-fit: cover;
   }
 

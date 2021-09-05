@@ -10,6 +10,8 @@ let obsArray = [];
 let cardArray = ["this", "that"];
 let cardObj;
 
+const updater = new CustomEvent('updateArray');
+
 let currentIDs;
 let mushroomIDs = "48431,47348,56830,48496,53714";
 let fruitIDs = "50900,83434,58736,54500,47351,60773,50999,47902,54297";
@@ -65,18 +67,11 @@ function getLocation() {
 
 function positionRelay(position) {
 
-    //  console.log(position.coords.latitude);
-
     lat = position.coords.latitude;
     lon = position.coords.longitude;
 
-    //  console.log("Latitude: " + lat +
-    //  " Longitude: " + lon);
-
     Run();
 }
-
-const updater = new CustomEvent('updateArray');
 
 function Run() {
 
@@ -87,6 +82,7 @@ function Run() {
 
     getFile(lat, lon, currentIDs).then((value) => {
         obsArray = value;
+        
         // console.log(obsArray);
         
         cardArray = obsArray.map(obs => <ObsCard key={obs.url} observation={obs}/>);
@@ -147,13 +143,13 @@ export class CardDisplay extends Component {
             <div className="row-fluid">
                 <div className="col">
                  <RenderCards cardArray={this.state.cards} />
-                 <button onClick={this.update}> Click me! </button>
+                 {/* <button onClick={this.update}> Click me! </button> */}
                  </div>
             </div>
             )
         } else {
             return (<div>
-                <button onClick={this.update}> Click me! </button>
+                {/* <button onClick={this.update}> Click me! </button> */}
             </div>)
         }
 

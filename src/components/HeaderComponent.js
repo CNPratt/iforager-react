@@ -7,37 +7,20 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink
-    // UncontrolledDropdown,
-    // DropdownToggle,
-    // DropdownMenu,
-    // DropdownItem,
-    // NavbarText
 } from 'reactstrap';
 import {idSwitcher} from './ObservationComponent';
+import { NavLink } from 'react-router-dom';
 
+let mushroomIDs = "48431,47348,56830,48496,53714";
+let fruitIDs = "50900,83434,58736,54500,47351,60773,50999,47902,54297";
+let berryIDs = "50299,48353,47544,47130,64697";
 
 class Header extends Component {
-    // constructor(props) {
-        // super(props);
-
-        // this.state = {
-        //     isOpen: false
-        // };
-
-        // this.toggle = this.toggle.bind(this);
-    // }
-
-    // toggle() {
-    //     this.setState({
-    //       isOpen: !this.state.isOpen
-    //     });
-    //   }
 
     render() {
         return (
-            <div className="header">
-                <Navbar className="navbar-expand-md sticky-top py-0 px-8">
+            <div className="header sticky-top">
+                <Navbar className="navbar-expand-md py-0 px-8">
                     {/* <!-- <img className="img-fluid py-1" src="images/favicon_crop.png" id="logo"
                         alt="ACI logo, a pyramid of stacked gold bars"> --> */}
 
@@ -60,7 +43,7 @@ class Header extends Component {
                         <Nav className="w-100 nav-justified" navbar>
 
                             <NavItem className="topLinks">
-                                <NavLink href="#">
+                                <NavLink className="nav-link" to="/home">
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         HOME
                                     </Button>
@@ -68,8 +51,8 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem className="topLinks">
-                                <NavLink href="#">
-                                    <Button onClick={() => idSwitcher("48431,47348,56830,48496,53714")}className="btn btn-lg btn-block text-nowrap navBtn">
+                                <NavLink className="nav-link" to="/mushrooms">
+                                    <Button onClick={() => idSwitcher(mushroomIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/mushroom.svg" /> */}
                                         MUSHROOMS
                                     </Button>
@@ -77,8 +60,8 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem className="topLinks">
-                                <NavLink href="#">
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                <NavLink className="nav-link" to="/fruit">
+                                    <Button onClick={() => idSwitcher(fruitIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/fruit.svg" /> */}
                                         FRUIT
                                     </Button>
@@ -86,8 +69,8 @@ class Header extends Component {
                             </NavItem>
 
                             <NavItem className="topLinks">
-                                <NavLink href="#">
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                <NavLink className="nav-link" to="/berries">
+                                    <Button onClick={() => idSwitcher(berryIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <Img height="35px" width="35px" src="img/berry.svg" /> */}
                                         BERRIES
                                     </Button>

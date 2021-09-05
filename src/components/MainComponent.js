@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Header from './HeaderComponent';
-import ObsCard from './ObsCardComponent';
-import {getFile} from './GetFileFunctions'
 import {CardDisplay} from './ObservationComponent'
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 
 class Main extends Component {
@@ -29,9 +28,17 @@ class Main extends Component {
         // obsCardArray = globalObsArray.map(obs => <ObsCard observation={obs}/>);
 
         return (
-            <div className="main">
+            <div className="main" height="100%">
+
                 <Header isOpen={this.state.isOpen} toggle={this.toggle} />
-                <CardDisplay />
+
+                <Switch>
+                    {/* <CardDisplay /> */}
+                    <Route exact path='/fruit' component={CardDisplay} />
+                    <Route exact path='/mushrooms' component={CardDisplay} />
+                    <Route exact path='/berries' component={CardDisplay} />
+                    <Redirect to='/fruit' />
+                </Switch>
             </div>
         );
     }
