@@ -4,7 +4,8 @@ import { CardDisplay } from './CardDisplayComponent'
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { idObject } from './IDObject';
 import ObsCard from './ObsCardComponent';
-import { getFile } from './GetFileFunctions'
+import { getFile } from './GetFileFunctions';
+import {HomePage} from './HomePageComponent'
 
 let corsErr = false;
 let isRunning = false;
@@ -16,9 +17,9 @@ let cardArray = ["this", "that"];
 
 const updater = new CustomEvent('updateArray');
 
-let currentIDs;
+// let currentIDs;
 
-currentIDs = idObject.mushroomIDs;
+// currentIDs = idObject.mushroomIDs;
 
 function run(ids) {
     isRunning = true;
@@ -62,6 +63,7 @@ function run(ids) {
 }
 
 
+
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -70,7 +72,7 @@ class Main extends Component {
             mode: null,
             isOpen: false,
             IDGroup: idObject.fruitIDs,
-            // cards: cardArray
+            cards: cardArray
         };
 
         this.toggle = this.toggle.bind(this);
@@ -90,14 +92,14 @@ class Main extends Component {
 
     componentDidUpdate(prevState, prevProps) {
         if(this.state.IDGroup !== prevState.IDGroup && !isRunning && !corsErr) {
-            console.log(this.state.IDGroup);
+            // console.log(this.state.IDGroup);
             run(this.state.IDGroup);
         }
     }
 
-    componentWillUnmount() {
-        document.removeEventListener('updateArray', this.update)
-    }
+    // componentWillUnmount() {
+    //     document.removeEventListener('updateArray', this.update)
+    // }
 
     toggle() {
         this.setState({
@@ -106,11 +108,13 @@ class Main extends Component {
     }
 
     idSwitcher(ids) {
+
         corsErr = false;
+        
         // console.log(isRunning);
         // console.log('before' + this.state.IDGroup);
 
-         if(!isRunning && ids != this.state.IDGroup) {
+         if(!isRunning && ids !== this.state.IDGroup) {
 
         this.setState({
             IDGroup: ids
@@ -148,28 +152,28 @@ class Main extends Component {
         lat = position.coords.latitude;
         lon = position.coords.longitude;
 
-        run(this.state.IDGroup);
+        // run(this.state.IDGroup);
     }
 
     render() {
 
-        
-
         return (
+
             <div className="main" height="100%">
 
                 <Header isOpen={this.state.isOpen} toggle={this.toggle} idswitch={this.idSwitcher} />
 
                 <Switch>
-                    {/* <CardDisplay /> */}
-                    <Route exact path='/(fruit|mushrooms|berries)' render={() => <CardDisplay cards={this.state.cards} />} />
-                    <Redirect to='/fruit' />
+
+                    <Route exact path='/finder/(mushrooms|berries|fruit)' render={() => <CardDisplay cards={this.state.cards} />} />
+
+                    <Route exact path='/home' component={HomePage} />
+
+                    <Redirect to='/home' />
                 </Switch>
             </div>
         );
     }
 }
-
-// console.log(cardObj);
 
 export default Main;

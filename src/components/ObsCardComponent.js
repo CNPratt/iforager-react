@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Card, CardText, CardBody,
+    CardTitle, CardSubtitle,
   } from 'reactstrap';
 
 class ObsCard extends Component {
@@ -14,7 +14,7 @@ class ObsCard extends Component {
         return (
             <Card key={this.props.observation.url} style={{display: 'flex', flexDirection: 'row'}}>
                 <a href={this.props.observation.url} target="blank">
-                    <img className="card-img-top" src={this.props.observation.image} />
+                    <img className="card-img-top" alt="" src={this.props.observation.image} />
                 </a>
                 <CardBody className="m-0 p-0">
                     <div className="cbCont1">

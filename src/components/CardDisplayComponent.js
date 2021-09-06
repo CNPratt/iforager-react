@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { idObject } from './IDObject';
+
 
 export class CardDisplay extends Component {
     constructor(props) {

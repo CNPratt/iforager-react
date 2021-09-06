@@ -26,6 +26,8 @@ export const getFile = async (lat, lon, currentIDs) => {
 
     obsArray = [];
 
+    console.log(currentIDs);
+
     const response = await fetch(
         `
         https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${currentIDs}&quality_grade=research&captive=false&lat=${lat}&lng=${lon}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
