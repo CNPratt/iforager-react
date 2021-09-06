@@ -8,12 +8,8 @@ import {
     Nav,
     NavItem,
 } from 'reactstrap';
-import {idSwitcher} from './ObservationComponent';
 import { NavLink } from 'react-router-dom';
-
-let mushroomIDs = "48431,47348,56830,48496,53714";
-let fruitIDs = "50900,83434,58736,54500,47351,60773,50999,47902,54297";
-let berryIDs = "50299,48353,47544,47130,64697";
+import {idObject} from './IDObject'
 
 class Header extends Component {
 
@@ -52,7 +48,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to="/mushrooms">
-                                    <Button onClick={() => idSwitcher(mushroomIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button onClick={() => this.props.idswitch(idObject.mushroomIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/mushroom.svg" /> */}
                                         MUSHROOMS
                                     </Button>
@@ -61,7 +57,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to="/fruit">
-                                    <Button onClick={() => idSwitcher(fruitIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button onClick={() => this.props.idswitch(idObject.fruitIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/fruit.svg" /> */}
                                         FRUIT
                                     </Button>
@@ -70,7 +66,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to="/berries">
-                                    <Button onClick={() => idSwitcher(berryIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button onClick={() => this.props.idswitch(idObject.berryIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <Img height="35px" width="35px" src="img/berry.svg" /> */}
                                         BERRIES
                                     </Button>

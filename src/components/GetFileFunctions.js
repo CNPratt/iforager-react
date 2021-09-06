@@ -1,16 +1,15 @@
-import { Observation } from './ObservationComponent';
+import { Observation } from './ObsClass';
 import {getDistance} from './DistanceFunc';
 
 let obsArray = [];
 
-function createElement(element, lat, lon) {
+function extractObservation(element, lat, lon) {
 
     let coordSplit = element.location.split(",");
 
     let thisLat = parseFloat(coordSplit[0]);
     let thisLon = parseFloat(coordSplit[1]);
 
-    //         console.log(`${thisLat}, ${thisLon}`);
     let trueDistance = getDistance(thisLat, thisLon, lat, lon);
     let preDistance = trueDistance.toString();
     let distance = parseFloat(preDistance.slice(0, 4)) + 'mi';
@@ -36,19 +35,34 @@ export const getFile = async (lat, lon, currentIDs) => {
 
     const resultsObject = await response.json();
 
-     console.log(resultsObject.results);
+    // console.log(resultsObject.results);
 
     resultsObject.results.forEach(element => {
         
-        createElement(element, lat, lon);
+    extractObservation(element, lat, lon);
 
     });
-
-    // obsArray.sort((a, b) => (a.distance > b.distance) ? 1 : -1);
-
-    // const cardArray = obsArray.map(obs => <ObsCard observation={obs}/>);
 
     //  console.log(obsArray);
 
     return obsArray;
 }
+
+// function inputRelay() {
+
+//     event.preventDefault();
+//     input = document.getElementById("input").value;
+//     queryInput = encodeURIComponent(input);
+
+//     file = "https://cors.bridged.cc/https://nominatim.openstreetmap.org/search?format=json&q=" + queryInput;
+
+//     console.log(file);
+
+//     fetch(file)
+//         .then(response => response.json())
+//         .then(data => geocodedInput = data[0])
+//         .then(response => console.log(geocodedInput.lat))
+//         .then(response => lat = geocodedInput.lat)
+//         .then(response => lon = geocodedInput.lon)
+//         .then(geocodedInput => Run())
+// }
