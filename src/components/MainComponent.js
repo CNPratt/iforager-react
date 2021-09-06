@@ -7,63 +7,6 @@ import ObsCard from './ObsCardComponent';
 import { getFile } from './GetFileFunctions';
 import {HomePage} from './HomePageComponent'
 
-let corsErr = false;
-let isRunning = false;
-let lat;
-let lon;
-
-let obsArray = [];
-let cardArray = ["this", "that"];
-
-const updater = new CustomEvent('updateArray');
-
-// let currentIDs;
-
-// currentIDs = idObject.mushroomIDs;
-
-function run(ids) {
-    isRunning = true;
-
-    obsArray = [];
-    cardArray = [];
-
-
-    document.dispatchEvent(updater);
-
-    // console.log(this.state.currentIDs);
-    // console.log(cardArray);
-
-    getFile(lat, lon, ids).then((value) => {
-        obsArray = value;
-        
-        // console.log(obsArray);
-        
-        cardArray = obsArray.map(obs => <ObsCard key={obs.url} observation={obs}/>);
-        
-        cardArray.sort((a, b) => (a.props.observation.trueDistance > b.props.observation.trueDistance) ? 1 : -1);
-
-        // console.log(cardArray);
-
-        document.dispatchEvent(updater);
-
-        isRunning = false;
-        
-    }).catch(function() {
-
-        isRunning = false;
-
-        corsErr = true;
-
-        cardArray = <div className="d-flex justify-content-center">Sorry! You have been temporarily blocked by iNaturalist due to request frequency. Please wait a minute or two and try again.</div>
-
-        document.dispatchEvent(updater);
-
-        console.log("CORS error");
-    });;
-}
-
-
-
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -71,35 +14,21 @@ class Main extends Component {
         this.state = {
             mode: null,
             isOpen: false,
-            IDGroup: idObject.fruitIDs,
-            cards: cardArray
+            latlon: [
+              0, 0
+            ]
         };
 
         this.toggle = this.toggle.bind(this);
-        this.idSwitcher = this.idSwitcher.bind(this);
-        this.positionRelay = this.positionRelay.bind(this);
-        this.update = this.update.bind(this);
-        // this.run = this.run.bind(this);
     }
 
     componentDidMount() {
 
-        document.addEventListener('updateArray', this.update)
+        // document.addEventListener('updateArray', this.update)
 
         this.getLocation();
 
     }
-
-    componentDidUpdate(prevState, prevProps) {
-        if(this.state.IDGroup !== prevState.IDGroup && !isRunning && !corsErr) {
-            // console.log(this.state.IDGroup);
-            run(this.state.IDGroup);
-        }
-    }
-
-    // componentWillUnmount() {
-    //     document.removeEventListener('updateArray', this.update)
-    // }
 
     toggle() {
         this.setState({
@@ -107,37 +36,21 @@ class Main extends Component {
         });
     }
 
-    idSwitcher(ids) {
+    getLocation = () => {
 
-        corsErr = false;
-        
-        // console.log(isRunning);
-        // console.log('before' + this.state.IDGroup);
+        const positionRelay = (position) => {
 
-         if(!isRunning && ids !== this.state.IDGroup) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
 
-        this.setState({
-            IDGroup: ids
-        });
-
-            // run(ids);
-         }
-    }
-
-     update() {
-        
-         this.setState({
-             cards: cardArray
-         })
-
-        //  console.log('updated');
-     }
-
-    getLocation() {
+            this.setState({
+                latlon: [lat, lon]
+            })
+        }
 
         if (navigator.geolocation) {
 
-            navigator.geolocation.getCurrentPosition(this.positionRelay, positionError);
+            navigator.geolocation.getCurrentPosition(positionRelay, positionError);
         }
 
         function positionError() {
@@ -147,13 +60,7 @@ class Main extends Component {
         }
     }
 
-    positionRelay(position) {
 
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
-
-        // run(this.state.IDGroup);
-    }
 
     render() {
 
@@ -161,11 +68,11 @@ class Main extends Component {
 
             <div className="main" height="100%">
 
-                <Header isOpen={this.state.isOpen} toggle={this.toggle} idswitch={this.idSwitcher} />
+                <Header isOpen={this.state.isOpen} toggle={this.toggle} />
 
                 <Switch>
 
-                    <Route exact path='/finder/(mushrooms|berries|fruit)' render={() => <CardDisplay cards={this.state.cards} />} />
+                    <Route exact path='/finder/(mushrooms|berries|fruit)' render={(props) => <CardDisplay position={this.state.latlon} type={props.match.params[0]} {...props} />} />
 
                     <Route exact path='/home' component={HomePage} />
 

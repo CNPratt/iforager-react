@@ -1,5 +1,6 @@
 import { Observation } from './ObsClass';
 import {getDistance} from './DistanceFunc';
+import { idObject } from './IDObject';
 
 let obsArray = [];
 
@@ -22,15 +23,15 @@ function extractObservation(element, lat, lon) {
  
 }
 
-export const getFile = async (lat, lon, currentIDs) => {
+export const getFile = async (latlon, type) => {
 
     obsArray = [];
 
-    console.log(currentIDs);
+    console.log("getfile ", idObject[type], type, latlon);
 
     const response = await fetch(
         `
-        https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${currentIDs}&quality_grade=research&captive=false&lat=${lat}&lng=${lon}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
+        https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type]}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
   
         `
     );
@@ -41,7 +42,7 @@ export const getFile = async (lat, lon, currentIDs) => {
 
     resultsObject.results.forEach(element => {
         
-    extractObservation(element, lat, lon);
+    extractObservation(element, latlon[0], latlon[1]);
 
     });
 

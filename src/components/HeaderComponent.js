@@ -48,7 +48,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/mushrooms`}>
-                                    <Button onClick={() => this.props.idswitch(idObject.mushroomIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/mushroom.svg" /> */}
                                         MUSHROOMS
                                     </Button>
@@ -57,7 +57,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/fruit`}>
-                                    <Button onClick={() => this.props.idswitch(idObject.fruitIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <img height="35px" width="35px" src="img/fruit.svg" /> */}
                                         FRUIT
                                     </Button>
@@ -66,7 +66,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/berries`}>
-                                    <Button onClick={() => this.props.idswitch(idObject.berryIDs)} className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
                                         {/* <Img height="35px" width="35px" src="img/berry.svg" /> */}
                                         BERRIES
                                     </Button>
