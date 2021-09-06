@@ -6,6 +6,7 @@ import { idObject } from './IDObject';
 import ObsCard from './ObsCardComponent';
 import { getFile } from './GetFileFunctions'
 
+let corsErr = false;
 let isRunning = false;
 let lat;
 let lon;
@@ -50,6 +51,8 @@ function run(ids) {
 
         isRunning = false;
 
+        corsErr = true;
+
         cardArray = <div className="d-flex justify-content-center">Sorry! You have been temporarily blocked by iNaturalist due to request frequency. Please wait a minute or two and try again.</div>
 
         document.dispatchEvent(updater);
@@ -67,7 +70,7 @@ class Main extends Component {
             mode: null,
             isOpen: false,
             IDGroup: idObject.fruitIDs,
-            cards: cardArray
+            // cards: cardArray
         };
 
         this.toggle = this.toggle.bind(this);
@@ -78,19 +81,19 @@ class Main extends Component {
     }
 
     componentDidMount() {
-        
+
         document.addEventListener('updateArray', this.update)
 
         this.getLocation();
 
     }
 
-    // componentDidUpdate(prevState, prevProps) {
-    //     if(this.state.IDGroup != prevState.IDGroup && !isRunning) {
-    //         console.log(this.state.IDGroup);
-    //         run(this.state.IDGroup);
-    //     }
-    // }
+    componentDidUpdate(prevState, prevProps) {
+        if(this.state.IDGroup !== prevState.IDGroup && !isRunning && !corsErr) {
+            console.log(this.state.IDGroup);
+            run(this.state.IDGroup);
+        }
+    }
 
     componentWillUnmount() {
         document.removeEventListener('updateArray', this.update)
@@ -103,7 +106,7 @@ class Main extends Component {
     }
 
     idSwitcher(ids) {
-        
+        corsErr = false;
         // console.log(isRunning);
         // console.log('before' + this.state.IDGroup);
 
@@ -113,7 +116,7 @@ class Main extends Component {
             IDGroup: ids
         });
 
-            run(ids);
+            // run(ids);
          }
     }
 
