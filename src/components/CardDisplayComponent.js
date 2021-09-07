@@ -36,7 +36,7 @@ export class CardDisplay extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.type !== prevProps.type) {
+        if(this.props.type !== prevProps.type || this.props.position !== prevProps.position) {
             
             this.getData();
         }

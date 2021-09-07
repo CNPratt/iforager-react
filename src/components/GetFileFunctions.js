@@ -38,15 +38,11 @@ export const getFile = async (latlon, type) => {
 
     const resultsObject = await response.json();
 
-    // console.log(resultsObject.results);
-
     resultsObject.results.forEach(element => {
         
     extractObservation(element, latlon[0], latlon[1]);
 
     });
-
-    //  console.log(obsArray);
 
     return obsArray;
 }

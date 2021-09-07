@@ -24,8 +24,6 @@ class Main extends Component {
 
     componentDidMount() {
 
-        // document.addEventListener('updateArray', this.update)
-
         this.getLocation();
 
     }

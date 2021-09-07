@@ -10,7 +10,9 @@ class ObsCard extends Component {
     };
 
     render() {
+        
         // console.log(this.props);
+
         return (
             <Card key={this.props.observation.url} style={{display: 'flex', flexDirection: 'row'}}>
                 <a href={this.props.observation.url} target="blank">
