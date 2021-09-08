@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import { CardDisplay } from './CardDisplayComponent'
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { idObject } from './IDObject';
-import ObsCard from './ObsCardComponent';
-import { getFile } from './GetFileFunctions';
 import {HomePage} from './HomePageComponent'
+import { LocationForm } from './LocationForm';
+import {inputRelay} from './GetFileFunctions'
 
 class Main extends Component {
     constructor(props) {
@@ -13,13 +12,11 @@ class Main extends Component {
 
         this.state = {
             mode: null,
-            isOpen: false,
             latlon: [
               0, 0
             ]
         };
 
-        this.toggle = this.toggle.bind(this);
     }
 
     componentDidMount() {
@@ -28,10 +25,17 @@ class Main extends Component {
 
     }
 
-    toggle() {
+    handleSubmit = async (e) => {
+        
+        e.preventDefault();
+
+        const receivedLocation = await inputRelay();
+
+        console.log(receivedLocation);
+
         this.setState({
-            isOpen: !this.state.isOpen
-        });
+            latlon: [parseFloat(receivedLocation.lat), parseFloat(receivedLocation.lon)]
+        })
     }
 
     getLocation = () => {
@@ -59,18 +63,21 @@ class Main extends Component {
     }
 
 
-
     render() {
+
+        console.log(this.state);
 
         return (
 
-            <div className="main" height="100%">
+            <div className="main container-fluid p-0" height="100%">
 
                 <Header isOpen={this.state.isOpen} toggle={this.toggle} />
+                
+                <LocationForm relay={this.handleSubmit} />
 
                 <Switch>
 
-                    <Route exact path='/finder/(mushrooms|berries|fruit)' render={(props) => <CardDisplay position={this.state.latlon} type={props.match.params[0]} {...props} />} />
+                    <Route exact path='/finder/(mushrooms|berries|fruit)' render={(props) => <CardDisplay latlon={this.state.latlon} type={props.match.params[0]} {...props} />} />
 
                     <Route exact path='/home' component={HomePage} />
 

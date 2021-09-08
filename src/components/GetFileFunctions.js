@@ -27,14 +27,16 @@ export const getFile = async (latlon, type) => {
 
     obsArray = [];
 
-    console.log("getfile ", idObject[type], type, latlon);
+    console.log("getfile ", idObject[type].ids, type, latlon);
 
     const response = await fetch(
         `
-        https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type]}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
+        https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type].ids}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
   
         `
     );
+
+    console.log(`https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type].ids}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true`)
 
     const resultsObject = await response.json();
 
@@ -47,21 +49,26 @@ export const getFile = async (latlon, type) => {
     return obsArray;
 }
 
-// function inputRelay() {
+export async function inputRelay() {
 
-//     event.preventDefault();
-//     input = document.getElementById("input").value;
-//     queryInput = encodeURIComponent(input);
+    let geocodedInput;
 
-//     file = "https://cors.bridged.cc/https://nominatim.openstreetmap.org/search?format=json&q=" + queryInput;
+    // event.preventDefault();
 
-//     console.log(file);
+    let input = document.getElementById("input").value;
+    let queryInput = encodeURIComponent(input);
 
-//     fetch(file)
-//         .then(response => response.json())
-//         .then(data => geocodedInput = data[0])
-//         .then(response => console.log(geocodedInput.lat))
-//         .then(response => lat = geocodedInput.lat)
-//         .then(response => lon = geocodedInput.lon)
-//         .then(geocodedInput => Run())
-// }
+    let file = "https://cors.bridged.cc/https://nominatim.openstreetmap.org/search?format=json&q=" + queryInput;
+
+//    console.log(file);
+
+    return await fetch(file)
+        .then(response => response.json())
+        .then(data => geocodedInput = data[0])
+//        .then(() => console.log(geocodedInput))
+        .then(() => {
+            
+            return geocodedInput;
+
+        })
+}

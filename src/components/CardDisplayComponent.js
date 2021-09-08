@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getFile } from './GetFileFunctions';
 import ObsCard from './ObsCardComponent'
+import { TitleDisplay } from './TitleDisplay';
+import { idObject } from './IDObject';
 
 
 export class CardDisplay extends Component {
@@ -14,7 +16,7 @@ export class CardDisplay extends Component {
     }
 
     getData() {
-        getFile(this.props.position , this.props.type).then((value) => {
+        getFile(this.props.latlon , this.props.type).then((value) => {
         this.setState({
             observations: value,
             errorMsg: null
@@ -36,28 +38,43 @@ export class CardDisplay extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.type !== prevProps.type || this.props.position !== prevProps.position) {
-            
+        if(this.props.type !== prevProps.type || this.props.latlon !== prevProps.latlon) {
+
+            // this.setState({
+            //     observations: [],
+            //     errorMsg: null
+            // }) 
+            //trying to reset display cards
+
             this.getData();
         }
     }
 
     render() {
 
-        console.log("carddisplay props",  this.props);
-        console.log("carddisplay state",  this.state);
+//        console.log("carddisplay props",  this.props);
+//        console.log("carddisplay state",  this.state);
+
+
 
         if(this.state.errorMsg){
             return(
-                <div className="d-flex justify-content-center">{this.state.errorMsg}.</div>
-            )
-                    
+
+                <div>
+                    <TitleDisplay typeName={this.props.type}/>
+
+                    <div className="d-flex justify-content-center">{this.state.errorMsg}.</div>
+                </div>
+
+            )         
         }
 
 
         if(this.state.observations){
             return (
             <div className="row-fluid">
+
+                <TitleDisplay typeName={this.props.type}/>
 
                 <div className="col">
                  {this.state.observations.sort((a, b) => (a.trueDistance > b.trueDistance) ? 1 : -1).map(obs => <ObsCard key={obs.url} observation={obs}/>)}

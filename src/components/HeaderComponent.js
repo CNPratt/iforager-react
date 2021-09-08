@@ -12,11 +12,24 @@ import { NavLink } from 'react-router-dom';
 import {idObject} from './IDObject'
 
 class Header extends Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isOpen: false,
+        }
+    }
+
+    toggle = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
     render() {
         return (
             <div className="header sticky-top">
-                <Navbar className="navbar-expand-md py-0 px-8">
+                <Navbar className="navbar-expand-md py-0">
                     {/* <!-- <img className="img-fluid py-1" src="images/favicon_crop.png" id="logo"
                         alt="ACI logo, a pyramid of stacked gold bars"> --> */}
 
@@ -29,13 +42,13 @@ class Header extends Component {
                     </NavbarBrand>
 
 
-                    <NavbarToggler onClick={this.props.toggle} type="Button" data-toggle="collapse"
+                    <NavbarToggler onClick={this.toggle} type="Button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation" id="toggler">
                         <span>MENU</span>
                     </NavbarToggler>
 
-                    <Collapse isOpen={this.props.isOpen} className="navbar-collapse" id="navbarSupportedContent" navbar>
+                    <Collapse isOpen={this.state.isOpen} className="navbar-collapse" id="navbarSupportedContent" navbar>
                         <Nav className="w-100 nav-justified" navbar>
 
                             <NavItem className="topLinks">
@@ -49,7 +62,7 @@ class Header extends Component {
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/mushrooms`}>
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
-                                        {/* <img height="35px" width="35px" src="img/mushroom.svg" /> */}
+                                        {/* <img height="35px" width="35px" src="../imgs/mushrooms.svg" /> */}
                                         MUSHROOMS
                                     </Button>
                                 </NavLink>
@@ -58,7 +71,7 @@ class Header extends Component {
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/fruit`}>
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
-                                        {/* <img height="35px" width="35px" src="img/fruit.svg" /> */}
+                                        {/* <img height="35px" width="35px" src="../imgs/fruit.svg" /> */}
                                         FRUIT
                                     </Button>
                                 </NavLink>
@@ -67,7 +80,7 @@ class Header extends Component {
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/berries`}>
                                     <Button className="btn btn-lg btn-block text-nowrap navBtn">
-                                        {/* <Img height="35px" width="35px" src="img/berry.svg" /> */}
+                                        {/* <img className="" height="35px" width="35px" src="../imgs/berries.svg" /> */}
                                         BERRIES
                                     </Button>
                                 </NavLink>

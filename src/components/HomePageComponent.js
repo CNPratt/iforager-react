@@ -1,7 +1,7 @@
 export function HomePage () {
 
     return (
-        <div>
+        <div className="container">
         <div className="row">
         <div className="col d-flex justify-content-center mx-5 mt-5 mb-2">
             <div>This is a page built on the iNaturalist API to make it easier to find edible plants and mushrooms near you! You may click an image to be taken to the original observation in full detail.

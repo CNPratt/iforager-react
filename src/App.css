@@ -1,16 +1,24 @@
-/* body {
-  font-family: Federo;
-} */
+.body {
+  font-family: Federo, sans-serif;
+}
 
 #display {
   margin-top: 20px;
 }
 
+#formCol {
+  
+}
+
+#formRow {
+
+}
+
 .card {
   margin: 5px;
-  /* flex-direction: row; */
-  /* max-height: 100px;
-  overflow: hidden; */
+  flex-direction: row;
+  max-height: 100px;
+  overflow: hidden;
 
 }
 
@@ -21,20 +29,21 @@
 } 
 
 .card-body {
-  padding: 0;
+  padding: 0px;
   display: flex;
 
   margin: 5px;
 }
 
 .card-text {
-
-  margin: 0px;
+  /* margin: 0px; */
+  font-size: small;
+  margin-top: auto;
 }
 
 .cardDist {
-  margin-top: auto;
-  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
 }
 
 .cbCont1 {
@@ -43,8 +52,10 @@
 }
 
 .cbCont2 {
+  display: flex;
+  flex-direction: column;
  margin-left: auto;
- margin-top: auto;
+ /* margin-top: auto; */
 }
 
 
@@ -83,11 +94,11 @@ span {
 }
 
 @media screen and (max-width: 600px) {
-  .card-title{
+  .card-title h5{
     font-size: x-small;
   }
 
-  .card-subtitle{
+  .card-subtitle h6{
     font-size: x-small;
   }
 
@@ -113,7 +124,7 @@ span {
     font-size: medium;
   }
 
-  #input {
+  /* #input {
     width: 75px;
-  }
+  } */
  }
