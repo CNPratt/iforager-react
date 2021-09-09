@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import { CardDisplay } from './CardDisplayComponent'
 import { Switch, Route, Redirect } from 'react-router-dom';
-import {HomePage} from './HomePageComponent'
+import { HomePage } from './HomePageComponent'
 import { LocationForm } from './LocationForm';
-import {inputRelay} from './GetFileFunctions'
+import { inputRelay } from './GetFileFunctions'
 
 class Main extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Main extends Component {
         this.state = {
             mode: null,
             latlon: [
-              0, 0
+                0, 0
             ]
         };
 
@@ -26,7 +26,7 @@ class Main extends Component {
     }
 
     handleSubmit = async (e) => {
-        
+
         e.preventDefault();
 
         const receivedLocation = await inputRelay();
@@ -72,12 +72,12 @@ class Main extends Component {
             <div className="main container-fluid p-0" height="100%">
 
                 <Header isOpen={this.state.isOpen} toggle={this.toggle} />
-                
+
                 <LocationForm relay={this.handleSubmit} />
 
                 <Switch>
 
-                    <Route exact path='/finder/(mushrooms|berries|fruit)' render={(props) => <CardDisplay latlon={this.state.latlon} type={props.match.params[0]} {...props} />} />
+                    <Route exact path='/finder/(mushrooms|berries|fruit|alliums)' render={(props) => <CardDisplay latlon={this.state.latlon} type={props.match.params[0]} {...props} />} />
 
                     <Route exact path='/home' component={HomePage} />
 

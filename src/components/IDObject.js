@@ -10,6 +10,10 @@ export const idObject = {
     berries: {
         ids: "50299,48353,47544,47130,64697",
         icon: ""
+    },
+    alliums: {
+        ids:"47357",
+        icon: ""
     }
 }
 

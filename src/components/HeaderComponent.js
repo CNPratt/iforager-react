@@ -30,10 +30,8 @@ class Header extends Component {
         return (
             <div className="header sticky-top">
                 <Navbar className="navbar-expand-md py-0">
-                    {/* <!-- <img className="img-fluid py-1" src="images/favicon_crop.png" id="logo"
-                        alt="ACI logo, a pyramid of stacked gold bars"> --> */}
 
-                    {/* <img src="img/icon.svg" height="50px" className="m-1" /> */}
+                <img src="../imgs/icon.svg" height="50px" class="m-1" />
 
                     <NavbarBrand className="mb-2" href="index.html">
                         <div id="logoText">
