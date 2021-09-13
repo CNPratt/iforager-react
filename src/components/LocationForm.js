@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React from 'react';
+import { Form, FormGroup, Input, } from 'reactstrap';
 
 export function LocationForm(props) {
     

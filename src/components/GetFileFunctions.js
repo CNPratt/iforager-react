@@ -6,6 +6,8 @@ let obsArray = [];
 
 function extractObservation(element, lat, lon) {
 
+    // console.log(element.id);
+
     let coordSplit = element.location.split(",");
 
     let thisLat = parseFloat(coordSplit[0]);
@@ -15,7 +17,7 @@ function extractObservation(element, lat, lon) {
     let preDistance = trueDistance.toString();
     let distance = parseFloat(preDistance.slice(0, 4)) + 'mi';
 
-    let thisObs = new Observation(element.taxon.name, element.taxon.preferred_common_name, element.place_guess, thisLat, thisLon, distance, element.uri, element.observation_photos[0].photo.url, element.created_at_details.date, trueDistance);
+    let thisObs = new Observation(element.taxon.name, element.taxon.preferred_common_name, element.place_guess, thisLat, thisLon, distance, element.uri, element.observation_photos[0].photo.url, element.created_at_details.date, trueDistance, element.id);
 
     if(!obsArray.includes(thisObs)) {
         obsArray.push(thisObs);
@@ -27,7 +29,7 @@ export const getFile = async (latlon, type) => {
 
     obsArray = [];
 
-    console.log("getfile ", idObject[type].ids, type, latlon);
+    // console.log("getfile ", idObject[type].ids, type, latlon);
 
     const response = await fetch(
         `
@@ -36,7 +38,7 @@ export const getFile = async (latlon, type) => {
         `
     );
 
-    console.log(`https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type].ids}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true`)
+    // console.log(`https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type].ids}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true`)
 
     const resultsObject = await response.json();
 

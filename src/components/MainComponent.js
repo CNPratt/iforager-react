@@ -31,7 +31,7 @@ class Main extends Component {
 
         const receivedLocation = await inputRelay();
 
-        console.log(receivedLocation);
+        // console.log(receivedLocation);
 
         this.setState({
             latlon: [parseFloat(receivedLocation.lat), parseFloat(receivedLocation.lon)]
@@ -65,7 +65,7 @@ class Main extends Component {
 
     render() {
 
-        console.log(this.state);
+        // console.log(this.state);
 
         return (
 

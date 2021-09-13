@@ -9,7 +9,6 @@ import {
     NavItem,
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import {idObject} from './IDObject'
 
 class Header extends Component {
     constructor(props) {
@@ -29,9 +28,9 @@ class Header extends Component {
     render() {
         return (
             <div className="header sticky-top">
-                <Navbar className="navbar-expand-md py-0">
+                <Navbar id="navID" className="navbar-expand-md py-0">
 
-                <img src="../imgs/icon.svg" height="50px" class="m-1" />
+                    <img alt="iForager icon" src="../imgs/icon.svg" height="50px" className="m-1" />
 
                     <NavbarBrand className="mb-2" href="index.html">
                         <div id="logoText">

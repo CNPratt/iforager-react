@@ -6,13 +6,10 @@
   margin-top: 20px;
 }
 
-#formCol {
-  
-}
-
-#formRow {
-
-}
+/* #cardCol {
+  overflow-y: scroll;
+  height: 525px;
+} */
 
 .card {
   margin: 5px;
@@ -64,10 +61,14 @@
   background-color: rgb(141, 192, 141);
 }
 
-span {
+#navID {
+  justify-content: initial;
+}
+
+/* span {
   color: white;
   text-shadow: 1px 1px 3px black;
-}
+} */
 
 .navBtn {
   color: white;

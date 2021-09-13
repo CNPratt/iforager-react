@@ -3,7 +3,6 @@ import {
     Card, CardText, CardBody,
     CardTitle, CardSubtitle,
   } from 'reactstrap';
-  import { Capitalizer } from './GetFileFunctions';
 
 class ObsCard extends Component {
     constructor(props) {
@@ -15,7 +14,7 @@ class ObsCard extends Component {
         // console.log(this.props);
 
         return (
-            <Card key={this.props.observation.url} style={{display: 'flex', flexDirection: 'row'}}>
+            <Card id={this.props.id} key={this.props.observation.url} style={{display: 'flex', flexDirection: 'row'}}>
                 <a href={this.props.observation.url} target="blank">
                     <img className="card-img-top" alt="" src={this.props.observation.image} />
                 </a>

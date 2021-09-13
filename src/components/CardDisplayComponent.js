@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { getFile } from './GetFileFunctions';
 import ObsCard from './ObsCardComponent'
 import { TitleDisplay } from './TitleDisplay';
-import { idObject } from './IDObject';
-
+import { SimpleMap } from './MapAPIComponent';
 
 export class CardDisplay extends Component {
     constructor(props) {
@@ -16,6 +15,9 @@ export class CardDisplay extends Component {
     }
 
     getData() {
+        this.setState({
+            observations: []
+        })
         getFile(this.props.latlon , this.props.type).then((value) => {
         this.setState({
             observations: value,
@@ -76,8 +78,10 @@ export class CardDisplay extends Component {
 
                 <TitleDisplay typeName={this.props.type}/>
 
-                <div className="col">
-                 {this.state.observations.sort((a, b) => (a.trueDistance > b.trueDistance) ? 1 : -1).map(obs => <ObsCard key={obs.url} observation={obs}/>)}
+                <SimpleMap latlon={this.props.latlon} observations={this.state.observations}/>
+
+                <div className="col" id="cardCol">
+                 {this.state.observations.sort((a, b) => (a.trueDistance > b.trueDistance) ? 1 : -1).map(obs => <ObsCard id={obs.trueID} key={obs.trueID} observation={obs}/>)}
                  </div>
             </div>
             );
