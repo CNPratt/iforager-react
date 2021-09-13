@@ -3,8 +3,10 @@ import { Form, FormGroup, Input, } from 'reactstrap';
 
 export function LocationForm(props) {
     
+    // console.log(props);
+
     return (
-        <div className="" id="formRow">
+        <div className="footer" id="formRow">
             <div className="col justify-content-center d-flex" id="formCol">
                 <Form id="form" className="w-75" onSubmit={props.relay}>
                     <FormGroup className="d-flex m-0 my-3">

@@ -1,7 +1,8 @@
 export function HomePage () {
 
     return (
-        <div className="container">
+        <div className="container mt-3" id="homeMain">
+                <div id="welcomeTitle">Welcome to iForager!</div>
         <div className="row">
         <div className="col d-flex justify-content-center mx-5 mt-5 mb-2">
             <div>This is a page built on the iNaturalist API to make it easier to find edible plants and mushrooms near you! You may click an image to be taken to the original observation in full detail.
@@ -17,7 +18,7 @@ export function HomePage () {
     </div>
 
     <div className="row">
-        <div className="col d-flex justify-content-center my-2 mx-5">   
+        <div className="col d-flex justify-content-center my-2 mx-5 mb-5">   
             <div>And as always, please forage with care! Though we do our best to include the most common and easily
                 identifiable edible species, we cannot guaruntee the accuracy of the observations or the edibility of
                 any foraged products that you might find. Additionally, people react to wild goods in different ways.

@@ -80,6 +80,8 @@ export class CardDisplay extends Component {
 
 
         if (this.state.observations) {
+
+
             return (
                 <div className="row-fluid" id="cardDisplayMain">
 
@@ -87,7 +89,7 @@ export class CardDisplay extends Component {
 
                     <SimpleMap latlon={this.props.latlon} observations={this.state.observations} selected={this.state.selected} handler={this.handleMarkerClick} />
 
-                    <LocationForm relay={this.props.handleSubmit} />
+                    <LocationForm relay={this.props.relay} />
 
                     <div className="col" id="cardCol">
                         {this.state.observations.sort((a, b) => (a.trueDistance > b.trueDistance) ? 1 : -1).map(obs => <ObsCard obsid={obs.trueID} key={obs.trueID} observation={obs} />)}

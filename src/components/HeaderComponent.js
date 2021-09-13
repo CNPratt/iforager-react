@@ -28,7 +28,7 @@ class Header extends Component {
     render() {
         return (
             <div className="header sticky-top">
-                <Navbar id="navID" className="navbar-expand-md py-0">
+                <Navbar id="navID" className="navbar-expand-xl navbar-light py-0">
 
                     <img alt="iForager icon" src="../imgs/icon.svg" height="50px" className="m-1" />
 
@@ -42,15 +42,15 @@ class Header extends Component {
                     <NavbarToggler onClick={this.toggle} type="Button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation" id="toggler">
-                        <span>MENU</span>
+                        <span className="navbar-toggler-icon"></span>
                     </NavbarToggler>
 
                     <Collapse isOpen={this.state.isOpen} className="navbar-collapse" id="navbarSupportedContent" navbar>
                         <Nav className="w-100 nav-justified" navbar>
 
                             <NavItem className="topLinks">
-                                <NavLink className="nav-link" to="/home">
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                <NavLink className="nav-link" to="/home" >
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn" onClick={this.toggle}>
                                         HOME
                                     </Button>
                                 </NavLink>
@@ -58,7 +58,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/mushrooms`}>
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn" onClick={this.toggle}>
                                         {/* <img height="35px" width="35px" src="../imgs/mushrooms.svg" /> */}
                                         MUSHROOMS
                                     </Button>
@@ -67,7 +67,7 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/fruit`}>
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn" onClick={this.toggle}>
                                         {/* <img height="35px" width="35px" src="../imgs/fruit.svg" /> */}
                                         FRUIT
                                     </Button>
@@ -76,9 +76,18 @@ class Header extends Component {
 
                             <NavItem className="topLinks">
                                 <NavLink className="nav-link" to={`/finder/berries`}>
-                                    <Button className="btn btn-lg btn-block text-nowrap navBtn">
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn" onClick={this.toggle}>
                                         {/* <img className="" height="35px" width="35px" src="../imgs/berries.svg" /> */}
                                         BERRIES
+                                    </Button>
+                                </NavLink>
+                            </NavItem>
+
+                            <NavItem className="topLinks">
+                                <NavLink className="nav-link" to={`/finder/alliums`}>
+                                    <Button className="btn btn-lg btn-block text-nowrap navBtn" onClick={this.toggle}>
+                                        {/* <img className="" height="35px" width="35px" src="../imgs/berries.svg" /> */}
+                                        ALLIUMS
                                     </Button>
                                 </NavLink>
                             </NavItem>

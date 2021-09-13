@@ -8,7 +8,7 @@ export function SimpleMap (props) {
     let overlays = [];
     let positArray = props.observations.map(obs => [[obs.obsLat, obs.obsLon], obs.trueID])
 
-    console.log(props.selected);
+//    console.log(props.selected);
 
     markers = positArray.map(element => <Marker width={25} anchor={element[0]} color="green" key={element[1]} onMouseOver={() => document.getElementById(`overlay${element[1]}`).style.display = "initial"} onMouseOut={() => document.getElementById(`overlay${element[1]}`).style.display = "none"} onClick={() => props.handler(element[1])} />)
 
@@ -29,9 +29,9 @@ export function SimpleMap (props) {
         <div className="container-fluid">
             <div className="row d-flex justify-content-center">
                 <div id="mapCont">
-                <Map height={300} width={300} center={props.latlon} defaultZoom={10} 
+                <Map height={300} width={300} center={props.latlon} defaultZoom={9} 
                 >
-                    <Marker width={50} anchor={props.latlon} color="brown" />
+                    <Marker width={25} anchor={props.latlon} color="brown" />
                     {markers}
                     {overlays}
                     {/* name overlays for map */}
@@ -40,10 +40,10 @@ export function SimpleMap (props) {
 
 
 
-                <div className="row-fluid w-100">
+                <div className="row-fluid w-100 mt-2">
                     <div className="col">
                         <div className="selectedCol" >
-                                                    {props.selected}
+                            {props.selected}
                         </div>
                     </div>
                 </div>

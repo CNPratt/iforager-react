@@ -1,6 +1,19 @@
 .body {
   font-family: Federo, sans-serif;
   background-color: #796D5B;
+  background-image: url("../src/textures/fabric-dark.png");
+}
+
+.footer{
+  padding: 1rem;
+  background-color: rgb(235, 195, 64);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  border-top: 5px groove #575046;
+  background-image: url("../src/textures/fabric-dark.png");
 }
 
 #display {
@@ -12,12 +25,15 @@
   height: 525px;
 } */
 
+#cardCol {
+  margin-bottom: 90px;
+}
+
 
 .card {
   margin: 5px;
   flex-direction: row;
-  max-height: 100px;
-  overflow: hidden;
+  /* overflow: hidden; */
 
 }
 
@@ -25,6 +41,7 @@
   width: 100px; 
   height: 100px; 
   object-fit: cover;
+  border-right: 2px solid #575046;
 } 
 
 .card-body {
@@ -61,6 +78,19 @@
 .navbar {
   justify-content: initial;
   background-color: rgb(141, 192, 141);
+  border-bottom: 5px ridge #575046;
+  background-image: url("../src/textures/black-linen.png");
+}
+
+.navbar button {
+  /* background-color: rgb(141, 192, 141);
+  background-image: url("../src/textures/black-linen.png"); */
+  background-color: transparent !important;
+  border: 0px transparent solid;
+}
+
+.navbar button:hover {
+  background-color: rgb(106, 146, 106);
 }
 
 #navID {
@@ -77,23 +107,61 @@
   text-shadow: 1px 1px 3px black;
 }
 
+
+
 #cardDisplayMain {
   background-color: #796D5B;
+  background-image: url("../src/textures/fabric-dark.png");
+  /* background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png"); */
 }
 
 #titleCont {
   background-color: #F8ECDB;
   border: 5px solid #575046;
   border-radius: 25px;
+  font-family: Courgette, serif;
+  background-image: url("../src/textures/cloth-alike.png");
+}
+
+#homeMain {
+  background-color: #F8ECDB;
+  border: 5px solid #575046;
+  border-radius: 25px;
+  padding-bottom: 25px;
+  background-image: url("../src/textures/cloth-alike.png");
 }
 
 #pageTitle {
   padding-top: 5px;
   font-size: xx-large;
+  color: #575046;
+  text-shadow: 1px 1px 3px #796D5B;
+}
+
+#welcomeTitle {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  font-size: xx-large;
+  color: #575046;
+  text-shadow: 1px 1px 3px #796D5B;
+}
+
+.card-body .card-title {   
+  /* color: #796D5B;
+  text-shadow: 1px 1px 5px #575046; */
+  text-decoration: underline;
+}
+
+.card-body .card-subtitle {   
+  font-style: italic;
 }
 
 .selectedCol .card {
   border: 2px solid #CFBF00;
+  background-color: #F8ECDB;
+  background-image: url("../src/textures/cloth-alike.png");
+  /* background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png"); */
 }
 
 /* .pigeon-overlays {
@@ -112,11 +180,15 @@
 
 #formRow {
   background-color: #796D5B;
+  padding: 0px;
 }
 
 #cardCol .card{
   background-color: #F8ECDB;
   border: 2px solid #575046;
+  background-image: url("https://www.transparenttextures.com/patterns/cloth-alike.png");
+
+  font-family: Courgette, serif;
 }
 
 #logo {
@@ -165,9 +237,9 @@
     object-fit: cover;
   }
 
-  #pageTitle {
+  /* #pageTitle {
     font-size: large;
-  }
+  } */
 
   /* #input {
     width: 75px;
