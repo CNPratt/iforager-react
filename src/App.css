@@ -1,5 +1,6 @@
 .body {
   font-family: Federo, sans-serif;
+  background-color: #796D5B;
 }
 
 #display {
@@ -10,6 +11,7 @@
   overflow-y: scroll;
   height: 525px;
 } */
+
 
 .card {
   margin: 5px;
@@ -75,6 +77,48 @@
   text-shadow: 1px 1px 3px black;
 }
 
+#cardDisplayMain {
+  background-color: #796D5B;
+}
+
+#titleCont {
+  background-color: #F8ECDB;
+  border: 5px solid #575046;
+  border-radius: 25px;
+}
+
+#pageTitle {
+  padding-top: 5px;
+  font-size: xx-large;
+}
+
+.selectedCol .card {
+  border: 2px solid #CFBF00;
+}
+
+/* .pigeon-overlays {
+
+} */
+
+#mapCont > div {
+  border-radius: 25px;
+}
+
+#mapCont {
+  border: 5px solid #575046;
+  border-radius: 25px;
+  height: 310px;
+}
+
+#formRow {
+  background-color: #796D5B;
+}
+
+#cardCol .card{
+  background-color: #F8ECDB;
+  border: 2px solid #575046;
+}
+
 #logo {
   max-width: 10%;
   min-width: 75px;
@@ -121,11 +165,12 @@
     object-fit: cover;
   }
 
-  .pageTitle {
-    font-size: medium;
+  #pageTitle {
+    font-size: large;
   }
 
   /* #input {
     width: 75px;
   } */
+
  }

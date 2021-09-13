@@ -73,11 +73,9 @@ class Main extends Component {
 
                 <Header isOpen={this.state.isOpen} toggle={this.toggle} />
 
-                <LocationForm relay={this.handleSubmit} />
-
                 <Switch>
 
-                    <Route exact path='/finder/(mushrooms|berries|fruit|alliums)' render={(props) => <CardDisplay latlon={this.state.latlon} type={props.match.params[0]} {...props} />} />
+                    <Route exact path='/finder/(mushrooms|berries|fruit|alliums)' render={(props) => <CardDisplay latlon={this.state.latlon} type={props.match.params[0]} {...props} relay={this.handleSubmit}/>} />
 
                     <Route exact path='/home' component={HomePage} />
 

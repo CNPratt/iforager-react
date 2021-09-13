@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import { Map, Marker, Overlay } from "pigeon-maps"
-import ObsCard from "./ObsCardComponent";
-import { render } from 'react-dom';
 
 export function SimpleMap (props) {
 
 
     let markers = [];
     let overlays = [];
-
     let positArray = props.observations.map(obs => [[obs.obsLat, obs.obsLon], obs.trueID])
 
-    // console.log(props.observations);
+    console.log(props.selected);
 
-
-    markers = positArray.map(element => <Marker width={25} anchor={element[0]} color="green" key={element[1]} onMouseOver={() => document.getElementById(`overlay${element[1]}`).style.display = "initial"} onMouseOut={() => document.getElementById(`overlay${element[1]}`).style.display = "none"} />)
+    markers = positArray.map(element => <Marker width={25} anchor={element[0]} color="green" key={element[1]} onMouseOver={() => document.getElementById(`overlay${element[1]}`).style.display = "initial"} onMouseOut={() => document.getElementById(`overlay${element[1]}`).style.display = "none"} onClick={() => props.handler(element[1])} />)
 
     // onClick={() => document.getElementById(element[1]).scrollIntoView()}
     //add into markers above for scroll to card
@@ -27,18 +23,30 @@ export function SimpleMap (props) {
             <span  id={`overlay${element.trueID}`}  style={{display: "none"}}>{element.species}</span>
         </Overlay>)
 
+        // console.log(props.selected[0].trueID)
 
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row d-flex justify-content-center">
-                <Map height={500} width={500} center={props.latlon} defaultZoom={10}
+                <div id="mapCont">
+                <Map height={300} width={300} center={props.latlon} defaultZoom={10} 
                 >
                     <Marker width={50} anchor={props.latlon} color="brown" />
                     {markers}
                     {overlays}
                     {/* name overlays for map */}
-                </Map>
+                </Map> 
+                </div>
 
+
+
+                <div className="row-fluid w-100">
+                    <div className="col">
+                        <div className="selectedCol" >
+                                                    {props.selected}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

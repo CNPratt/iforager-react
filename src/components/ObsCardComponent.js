@@ -14,7 +14,7 @@ class ObsCard extends Component {
         // console.log(this.props);
 
         return (
-            <Card id={this.props.id} key={this.props.observation.url} style={{display: 'flex', flexDirection: 'row'}}>
+            <Card obsid={this.props.obsid} key={this.props.observation.trueID} style={{display: 'flex', flexDirection: 'row'}}>
                 <a href={this.props.observation.url} target="blank">
                     <img className="card-img-top" alt="" src={this.props.observation.image} />
                 </a>
