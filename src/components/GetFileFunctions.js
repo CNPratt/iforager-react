@@ -48,6 +48,8 @@ export const getFile = async (latlon, type) => {
 
     });
 
+    console.log(obsArray);
+
     return obsArray;
 }
 

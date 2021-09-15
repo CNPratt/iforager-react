@@ -26,9 +26,12 @@ class Header extends Component {
     }
 
     render() {
+
+        console.log("header rendered");
+        
         return (
             <div className="header sticky-top">
-                <Navbar id="navID" className="navbar-expand-xl navbar-light py-0">
+                <Navbar id="navID" className="navbar-light py-0">
 
                     <img alt="iForager icon" src="../imgs/icon.svg" height="50px" className="m-1" />
 

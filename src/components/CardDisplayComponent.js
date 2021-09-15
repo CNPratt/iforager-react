@@ -12,21 +12,26 @@ export class CardDisplay extends Component {
         this.state = {
             observations: [],
             selected: null,
+            selectedMarker: null,
             errorMsg: null
         }
     }
 
     handleMarkerClick = (id) => {
         this.setState({
-            selected: this.state.observations.filter(obs => obs.trueID === id).map(obs => <ObsCard id="selectedCard" style={{ borderColor: "#CFBF00" }} obsid={obs.trueID} key={obs.trueID} observation={obs} />)
+            selected: this.state.observations.filter(obs => obs.trueID === id).map(obs => <ObsCard id="selectedCard" style={{ borderColor: "#CFBF00" }} obsid={obs.trueID} key={obs.trueID} observation={obs} />),
+            selectedMarker: id
         })
+
+    
     }
 
     getData() {
 
         this.setState({
             observations: [],
-            selected: null
+            selected: null,
+            selectedMarker: null,
         })
 
         getFile(this.props.latlon, this.props.type).then((value) => {
@@ -87,7 +92,7 @@ export class CardDisplay extends Component {
 
                     <TitleDisplay typeName={this.props.type} />
 
-                    <SimpleMap latlon={this.props.latlon} observations={this.state.observations} selected={this.state.selected} handler={this.handleMarkerClick} />
+                    <SimpleMap latlon={this.props.latlon} observations={this.state.observations} selected={this.state.selected} handler={this.handleMarkerClick} selectedMarker={this.state.selectedMarker}/>
 
                     <LocationForm relay={this.props.relay} />
 
