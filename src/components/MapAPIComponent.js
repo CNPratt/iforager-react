@@ -39,7 +39,7 @@ export function SimpleMap(props) {
       anchor={[element.obsLat, element.obsLon]}
       offset={
         element.species
-          ? [element.species.length * 2, 10]
+          ? [element.species.length * 2, 0]
           : [element.name.length * 2, 10]
       }
       key={element.trueID}
