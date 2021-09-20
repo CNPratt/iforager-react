@@ -103,13 +103,14 @@ export class CardDisplay extends Component {
             handler={this.handleMarkerClick}
             selectedMarker={this.state.selectedMarker}
             transKey={this.props.location.pathname}
-            twoFingerDrag twoFingerDragWarning
+            twoFingerDrag
+            twoFingerDragWarning
           />
 
-          <LocationForm relay={this.props.relay}/>
+          <LocationForm relay={this.props.relay} />
           <div className="col" id="cardCol">
-              <Stagger in>
-                {/* {this.state.observations
+            <Stagger in>
+              {/* {this.state.observations
                   .sort((a, b) => (a.trueDistance > b.trueDistance ? 1 : -1))
                   .map((obs) => (
                     <ObsCard
@@ -120,8 +121,12 @@ export class CardDisplay extends Component {
                       selectedId={this.state.selectedMarker}
                     />
                   ))} */}
-                  <CardStack observations={this.state.observations} handleMarkerClick={this.handleMarkerClick} selectedMarker={this.state.selectedMarker} />
-              </Stagger>
+              <CardStack
+                observations={this.state.observations}
+                handleMarkerClick={this.handleMarkerClick}
+                selectedMarker={this.state.selectedMarker}
+              />
+            </Stagger>
           </div>
         </div>
       );
