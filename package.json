@@ -2,7 +2,7 @@
   "name": "iforager-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cnpratt,github.io/iforager-react",
+  "homepage": ".",
   "dependencies": {
     "bootstrap": "4.5.2",
     "cra-template": "1.1.2",
