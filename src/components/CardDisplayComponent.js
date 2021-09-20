@@ -91,7 +91,7 @@ export class CardDisplay extends Component {
       );
     }
 
-    if (this.state.observations.length) {
+    if (this.state.observations) {
       return (
         <div className="row-fluid" id="cardDisplayMain">
           <TitleDisplay typeName={this.props.type} />
