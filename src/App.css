@@ -172,12 +172,12 @@ path {
 } */
 
 #mapCont > div {
-  border-radius: 25px;
+  /* border-radius: 25px; */
 }
 
 #mapCont {
   border: 5px solid #575046;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   height: 310px;
 }
 

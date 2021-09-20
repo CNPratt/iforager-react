@@ -16,6 +16,7 @@ export function SimpleMap(props) {
         width={25}
         anchor={element[0]}
         color={element[1] === props.selectedMarker ? "blue" : "green"}
+        style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
         key={element[1]}
         onMouseOver={() =>
           (document.getElementById(`overlay${element[1]}`).style.display =
@@ -60,7 +61,7 @@ export function SimpleMap(props) {
         {/* <Fade in key={props.transKey}> */}
           <div id="mapCont">
             <Map height={300} width={300} center={props.latlon} defaultZoom={9}>
-              <Marker style={{zIndex: "1"}}width={25} anchor={props.latlon} color="brown" />
+              <Marker style={{zIndex: "1"}} width={25} anchor={props.latlon} color="brown" />
               {markers}
               {overlays}
               {/* name overlays for map */}

@@ -5,7 +5,7 @@ import { TitleDisplay } from "./TitleDisplay";
 import { SimpleMap } from "./MapAPIComponent";
 import { LocationForm } from "./LocationForm";
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
-import { Media } from "reactstrap";
+import { CardStack } from "./CardStackComponent";
 
 export class CardDisplay extends Component {
   constructor(props) {
@@ -18,21 +18,6 @@ export class CardDisplay extends Component {
       errorMsg: null,
     };
   }
-
-  resetState = () => {
-    this.setState({
-      observations: [],
-      selected: null,
-      selectedMarker: null,
-      errorMsg: null,
-    })
-  }
-
-  combinedRelay = (e) => {
-    e.preventDefault();
-    this.props.relay();
-    this.resetState();
-  } 
 
   handleMarkerClick = (id) => {
     this.setState({
@@ -86,6 +71,8 @@ export class CardDisplay extends Component {
     ) {
       this.getData();
     }
+
+    // console.log(this.state.observations)
   }
 
   render() {
@@ -104,7 +91,7 @@ export class CardDisplay extends Component {
       );
     }
 
-    if (this.state.observations) {
+    if (this.state.observations.length) {
       return (
         <div className="row-fluid" id="cardDisplayMain">
           <TitleDisplay typeName={this.props.type} />
@@ -116,12 +103,13 @@ export class CardDisplay extends Component {
             handler={this.handleMarkerClick}
             selectedMarker={this.state.selectedMarker}
             transKey={this.props.location.pathname}
+            twoFingerDrag twoFingerDragWarning
           />
 
           <LocationForm relay={this.props.relay}/>
           <div className="col" id="cardCol">
               <Stagger in>
-                {this.state.observations
+                {/* {this.state.observations
                   .sort((a, b) => (a.trueDistance > b.trueDistance ? 1 : -1))
                   .map((obs) => (
                     <ObsCard
@@ -131,7 +119,8 @@ export class CardDisplay extends Component {
                       observation={obs}
                       selectedId={this.state.selectedMarker}
                     />
-                  ))}
+                  ))} */}
+                  <CardStack observations={this.state.observations} handleMarkerClick={this.handleMarkerClick} selectedMarker={this.state.selectedMarker} />
               </Stagger>
           </div>
         </div>

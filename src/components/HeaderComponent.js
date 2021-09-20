@@ -38,8 +38,10 @@ class Header extends Component {
             className="m-1"
           />
 
-          <NavbarBrand className="mb-2" href="/">
-            <div id="logoText">iForager</div>
+          <NavbarBrand className="mb-2" href={"/home"}>
+            {/* <NavLink className="nav-link" to={"/home"}> */}
+              <div id="logoText">iForager</div>
+            {/* </NavLink> */}
           </NavbarBrand>
 
           <NavbarToggler
@@ -63,7 +65,7 @@ class Header extends Component {
           >
             <Nav className="w-100 nav-justified" navbar>
               <NavItem className="topLinks">
-                <NavLink className="nav-link" to="/">
+                <NavLink className="nav-link" to={"/home"}>
                   <Button
                     className="btn btn-lg btn-block text-nowrap navBtn"
                     onClick={this.state.isOpen ? this.toggle : null}
@@ -86,7 +88,7 @@ class Header extends Component {
               </NavItem>
 
               <NavItem className="topLinks">
-                <NavLink className="nav-link" to={`/finder/fruit`}>
+                <NavLink className="nav-link" to={"/finder/fruit"}>
                   <Button
                     className="btn btn-lg btn-block text-nowrap navBtn"
                     onClick={this.state.isOpen ? this.toggle : null}

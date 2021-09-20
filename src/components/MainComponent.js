@@ -6,6 +6,8 @@ import { HomePage } from "./HomePageComponent";
 import { inputRelay } from "./GetFileFunctions";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
+const gitURL = "https://cnpratt.github.io/iforager-react";
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +22,10 @@ class Main extends Component {
     this.getLocation();
   }
 
-  handleSubmit = async () => {
+  handleSubmit = async (e) => {
 
+    e.preventDefault();
+    
     const receivedLocation = await inputRelay();
 
     // console.log(receivedLocation);
@@ -70,8 +74,8 @@ class Main extends Component {
             classNames="page"
             timeout={300}
           >
-            <Switch location={this.props.location} >
-              <Route exact path="/" component={HomePage} />
+            <Switch location={this.props.location}>
+              <Route exact path="/home" component={HomePage} />
 
               <Route
                 exact
@@ -86,7 +90,7 @@ class Main extends Component {
                 )}
               />
 
-              <Redirect to="/" />
+              <Redirect to="/home" />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
@@ -95,4 +99,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter((Main));
+export default withRouter(Main);
