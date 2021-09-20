@@ -5,7 +5,7 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Media,
+  Button,
 } from "reactstrap";
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
@@ -72,6 +72,7 @@ class ObsCard extends Component {
               </CardSubtitle>
 
               <CardText>
+                <div className="d-flex">
                 <a
                   style={{
                     fontSize: "xx-small",
@@ -83,6 +84,7 @@ class ObsCard extends Component {
                 >
                   Drop Pin
                 </a>
+                </div>
                 {this.props.observation.genLocation}
               </CardText>
               {/* <div className="cardDist">{this.props.observation.distance}</div> */}
