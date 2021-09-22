@@ -103,8 +103,8 @@ export class CardDisplay extends Component {
             handler={this.handleMarkerClick}
             selectedMarker={this.state.selectedMarker}
             transKey={this.props.location.pathname}
-            // twoFingerDrag
-            // twoFingerDragWarning
+            twoFingerDrag
+            twoFingerDragWarning
           />
 
           <LocationForm relay={this.props.relay} />
