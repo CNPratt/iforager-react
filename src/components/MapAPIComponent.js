@@ -12,23 +12,25 @@ export function SimpleMap(props) {
   // console.log('rendered');
 
   markers = positArray.map((element) => (
-      <Marker
-        width={25}
-        anchor={element[0]}
-        color={element[1] === props.selectedMarker ? "blue" : "green"}
-        style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
-        key={element[1]}
-        onMouseOver={() =>
-          (document.getElementById(`overlay${element[1]}`).style.display =
-            "initial")
-        }
-        onMouseOut={() =>
-          (document.getElementById(`overlay${element[1]}`).style.display = "none")
-        }
-        onClick={() => {
-          props.handler(element[1]);
-        }}
-      />
+    <Marker
+      width={25}
+      anchor={element[0]}
+      color={element[1] === props.selectedMarker ? "blue" : "green"}
+      style={
+        element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
+      }
+      key={element[1]}
+      onMouseOver={() =>
+        (document.getElementById(`overlay${element[1]}`).style.display =
+          "initial")
+      }
+      onMouseOut={() =>
+        (document.getElementById(`overlay${element[1]}`).style.display = "none")
+      }
+      onClick={() => {
+        props.handler(element[1]);
+      }}
+    />
   ));
 
   // onClick={() => document.getElementById(element[1]).scrollIntoView()}
@@ -54,19 +56,31 @@ export function SimpleMap(props) {
   ));
 
   // console.log(props.selected[0].trueID)
+  console.log("map rendered");
 
   return (
     <div className="container-fluid">
       <div className="row d-flex justify-content-center">
         {/* <Fade in key={props.transKey}> */}
-          <div id="mapCont">
-            <Map height={300} width={300} center={props.latlon} defaultZoom={9}>
-              <Marker style={{zIndex: "1"}} width={25} anchor={props.latlon} color="brown" />
-              {markers}
-              {overlays}
-              {/* name overlays for map */}
-            </Map>
-          </div>
+        <div id="mapCont">
+          <Map
+            height={300}
+            width={300}
+            center={props.latlon}
+            defaultZoom={9}
+            selectedMarker={props.selectedMarker}
+          >
+            <Marker
+              style={{ zIndex: "1" }}
+              width={25}
+              anchor={props.latlon}
+              color="brown"
+            />
+            {markers}
+            {overlays}
+            {/* name overlays for map */}
+          </Map>
+        </div>
         {/* </Fade> */}
 
         <div className="row-fluid w-100 mt-2">
