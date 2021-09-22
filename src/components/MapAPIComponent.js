@@ -68,6 +68,10 @@ export function SimpleMap(props) {
             width={300}
             center={props.latlon}
             defaultZoom={9}
+            twoFingerDrag="true"
+            twoFingerDragWarning={true}
+            metaWheelZoom="true"
+            attribution={false}
           >
             <Marker
               style={{ zIndex: "1" }}

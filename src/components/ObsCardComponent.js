@@ -72,7 +72,7 @@ class ObsCard extends Component {
               </CardSubtitle>
 
               <CardText>
-                <div className="d-flex">
+                <span className="d-flex">
                 <a
                   style={{
                     fontSize: "xx-small",
@@ -84,7 +84,7 @@ class ObsCard extends Component {
                 >
                   Drop Pin
                 </a>
-                </div>
+                </span>
                 {this.props.observation.genLocation}
               </CardText>
               {/* <div className="cardDist">{this.props.observation.distance}</div> */}
