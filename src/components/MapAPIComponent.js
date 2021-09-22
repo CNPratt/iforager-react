@@ -18,13 +18,13 @@ export function SimpleMap(props) {
         color={element[1] === props.selectedMarker ? "blue" : "green"}
         style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
         key={element[1]}
-        // onMouseOver={() =>
-        //   (document.getElementById(`overlay${element[1]}`).style.display =
-        //     "initial")
-        // }
-        // onMouseOut={() =>
-        //   (document.getElementById(`overlay${element[1]}`).style.display = "none")
-        // }
+        onMouseOver={() =>
+          (document.getElementById(`overlay${element[1]}`).style.display =
+            "initial")
+        }
+        onMouseOut={() =>
+          (document.getElementById(`overlay${element[1]}`).style.display = "none")
+        }
         onClick={() => {
           props.handler(element[1]);
         }}
@@ -34,26 +34,24 @@ export function SimpleMap(props) {
   // onClick={() => document.getElementById(element[1]).scrollIntoView()}
   //add into markers above for scroll to card
 
-// //overlays possibly creating rendering issues on mobile view only - not certain but omitted for now
+  overlays = props.observations.map((element) => (
+    <Overlay
+      anchor={[element.obsLat, element.obsLon]}
+      offset={
+        element.species
+          ? [element.species.length * 2, 0]
+          : [element.name.length * 2, 10]
+      }
+      key={element.trueID}
+      style={{ color: "black", backgroundColor: "white", fontSize: "x-small" }}
+    >
+      {/* <img src="../imgs/fruit.svg" width={25} height={25} alt='' style={{fill:"green"}} /> */}
 
-  // overlays = props.observations.map((element) => (
-  //   <Overlay
-  //     anchor={[element.obsLat, element.obsLon]}
-  //     offset={
-  //       element.species
-  //         ? [element.species.length * 2, 0]
-  //         : [element.name.length * 2, 10]
-  //     }
-  //     key={element.trueID}
-  //     style={{ color: "black", backgroundColor: "white", fontSize: "x-small" }}
-  //   >
-  //     {/* <img src="../imgs/fruit.svg" width={25} height={25} alt='' style={{fill:"green"}} /> */}
-
-  //     <span id={`overlay${element.trueID}`} style={{ display: "none" }}>
-  //       {element.species}
-  //     </span>
-  //   </Overlay>
-  // ));
+      <span id={`overlay${element.trueID}`} style={{ display: "none" }}>
+        {element.species}
+      </span>
+    </Overlay>
+  ));
 
   // console.log(props.selected[0].trueID)
 
