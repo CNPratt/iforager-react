@@ -45,13 +45,13 @@ export function SimpleMap(props) {
   //     key={element.trueID}
   //     style={{ color: "black", backgroundColor: "white", fontSize: "x-small" }}
   //   >
-      {/* <img src="../imgs/fruit.svg" width={25} height={25} alt='' style={{fill:"green"}} /> */}
+  //     {/* <img src="../imgs/fruit.svg" width={25} height={25} alt='' style={{fill:"green"}} /> */}
 
-      <span id={`overlay${element.trueID}`} style={{ display: "none" }}>
-        {element.species}
-      </span>
-    </Overlay>
-  ));
+  //     <span id={`overlay${element.trueID}`} style={{ display: "none" }}>
+  //       {element.species}
+  //     </span>
+  //   </Overlay>
+  // ));
 
   // console.log(props.selected[0].trueID)
 
