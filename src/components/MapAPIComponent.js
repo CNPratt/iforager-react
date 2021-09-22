@@ -19,7 +19,7 @@ export function SimpleMap(props) {
       style={
         element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
       }
-      key={element[1]}
+      key={`ma${element[1]}`}
       onMouseOver={() =>
         (document.getElementById(`overlay${element[1]}`).style.display =
           "initial")
@@ -44,7 +44,7 @@ export function SimpleMap(props) {
           ? [element.species.length * 2, 0]
           : [element.name.length * 2, 10]
       }
-      key={element.trueID}
+      key={`ol${element.trueID}`}
       style={{ color: "black", backgroundColor: "white", fontSize: "x-small" }}
     >
       {/* <img src="../imgs/fruit.svg" width={25} height={25} alt='' style={{fill:"green"}} /> */}
@@ -56,7 +56,7 @@ export function SimpleMap(props) {
   ));
 
   // console.log(props.selected[0].trueID)
-  console.log("map rendered");
+  // console.log("map rendered");
 
   return (
     <div className="container-fluid">
@@ -68,7 +68,6 @@ export function SimpleMap(props) {
             width={300}
             center={props.latlon}
             defaultZoom={9}
-            selectedMarker={props.selectedMarker}
           >
             <Marker
               style={{ zIndex: "1" }}
