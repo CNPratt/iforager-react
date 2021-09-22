@@ -16,7 +16,7 @@ export function SimpleMap(props) {
         width={25}
         anchor={element[0]}
         color={element[1] === props.selectedMarker ? "blue" : "green"}
-        style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
+        // style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
         key={element[1]}
         // onMouseOver={() =>
         //   (document.getElementById(`overlay${element[1]}`).style.display =
@@ -34,17 +34,17 @@ export function SimpleMap(props) {
   // onClick={() => document.getElementById(element[1]).scrollIntoView()}
   //add into markers above for scroll to card
 
-  overlays = props.observations.map((element) => (
-    <Overlay
-      anchor={[element.obsLat, element.obsLon]}
-      offset={
-        element.species
-          ? [element.species.length * 2, 0]
-          : [element.name.length * 2, 10]
-      }
-      key={element.trueID}
-      style={{ color: "black", backgroundColor: "white", fontSize: "x-small" }}
-    >
+  // overlays = props.observations.map((element) => (
+  //   <Overlay
+  //     anchor={[element.obsLat, element.obsLon]}
+  //     offset={
+  //       element.species
+  //         ? [element.species.length * 2, 0]
+  //         : [element.name.length * 2, 10]
+  //     }
+  //     key={element.trueID}
+  //     style={{ color: "black", backgroundColor: "white", fontSize: "x-small" }}
+  //   >
       {/* <img src="../imgs/fruit.svg" width={25} height={25} alt='' style={{fill:"green"}} /> */}
 
       <span id={`overlay${element.trueID}`} style={{ display: "none" }}>
