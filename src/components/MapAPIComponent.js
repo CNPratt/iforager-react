@@ -16,7 +16,7 @@ export function SimpleMap(props) {
         width={25}
         anchor={element[0]}
         color={element[1] === props.selectedMarker ? "blue" : "green"}
-        // style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
+        style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
         key={element[1]}
         // onMouseOver={() =>
         //   (document.getElementById(`overlay${element[1]}`).style.display =
@@ -33,6 +33,8 @@ export function SimpleMap(props) {
 
   // onClick={() => document.getElementById(element[1]).scrollIntoView()}
   //add into markers above for scroll to card
+
+// //overlays possibly creating rendering issues on mobile view only - not certain but omitted for now
 
   // overlays = props.observations.map((element) => (
   //   <Overlay
