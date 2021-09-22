@@ -18,13 +18,13 @@ export function SimpleMap(props) {
         color={element[1] === props.selectedMarker ? "blue" : "green"}
         style={element[1] === props.selectedMarker ? {zIndex: "2"} : {zIndex: "0"}}
         key={element[1]}
-        onMouseOver={() =>
-          (document.getElementById(`overlay${element[1]}`).style.display =
-            "initial")
-        }
-        onMouseOut={() =>
-          (document.getElementById(`overlay${element[1]}`).style.display = "none")
-        }
+        // onMouseOver={() =>
+        //   (document.getElementById(`overlay${element[1]}`).style.display =
+        //     "initial")
+        // }
+        // onMouseOut={() =>
+        //   (document.getElementById(`overlay${element[1]}`).style.display = "none")
+        // }
         onClick={() => {
           props.handler(element[1]);
         }}
