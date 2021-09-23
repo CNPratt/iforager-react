@@ -1,10 +1,10 @@
 .body {
   font-family: Federo, sans-serif;
-  background-color: #796D5B;
+  background-color: #796d5b;
   background-image: url("../src/textures/fabric-dark.png");
 }
 
-.footer{
+.footer {
   padding: 1rem;
   background-color: rgb(235, 195, 64);
   position: fixed;
@@ -29,20 +29,18 @@
   margin-bottom: 90px;
 }
 
-
 .card {
   margin: 5px;
   flex-direction: row;
   /* overflow: hidden; */
-
 }
 
- .card img {
-  width: 100px; 
-  height: 100px; 
+.card img {
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-right: 2px solid #575046;
-} 
+}
 
 .card-body {
   padding: 0px;
@@ -70,10 +68,9 @@
 .cbCont2 {
   display: flex;
   flex-direction: column;
- margin-left: auto;
- /* margin-top: auto; */
+  margin-left: auto;
+  /* margin-top: auto; */
 }
-
 
 .navbar {
   justify-content: initial;
@@ -113,13 +110,13 @@ path {
 }
 
 #cardDisplayMain {
-  background-color: #796D5B;
+  background-color: #796d5b;
   background-image: url("../src/textures/fabric-dark.png");
   /* background-image: url("https://www.transparenttextures.com/patterns/dark-leather.png"); */
 }
 
 #titleCont {
-  background-color: #F8ECDB;
+  background-color: #f8ecdb;
   border: 5px solid #575046;
   border-radius: 25px;
   font-family: Courgette, serif;
@@ -127,7 +124,7 @@ path {
 }
 
 #homeMain {
-  background-color: #F8ECDB;
+  background-color: #f8ecdb;
   border: 5px solid #575046;
   border-radius: 25px;
   padding-bottom: 25px;
@@ -138,7 +135,7 @@ path {
   padding-top: 5px;
   font-size: xx-large;
   color: #575046;
-  text-shadow: 1px 1px 3px #796D5B;
+  text-shadow: 1px 1px 3px #796d5b;
 }
 
 #welcomeTitle {
@@ -147,22 +144,22 @@ path {
   padding-top: 5px;
   font-size: xx-large;
   color: #575046;
-  text-shadow: 1px 1px 3px #796D5B;
+  text-shadow: 1px 1px 3px #796d5b;
 }
 
-.card-body .card-title {   
+.card-body .card-title {
   /* color: #796D5B;
   text-shadow: 1px 1px 5px #575046; */
   text-decoration: underline;
 }
 
-.card-body .card-subtitle {   
+.card-body .card-subtitle {
   font-style: italic;
 }
 
 .selectedCol .card {
-  border: 2px solid #CFBF00;
-  background-color: #F8ECDB;
+  border: 2px solid #cfbf00;
+  background-color: #f8ecdb;
   background-image: url("../src/textures/cloth-alike.png");
   /* background-image: url("https://www.transparenttextures.com/patterns/notebook-dark.png"); */
 }
@@ -171,13 +168,13 @@ path {
 
 } */
 
-.selected path{
+.selected path {
   fill: blue;
 }
 
-.selected {
+/* .selected {
   z-index: 2;
-}
+} */
 
 #mapCont > div {
   /* border-radius: 25px; */
@@ -190,12 +187,12 @@ path {
 }
 
 #formRow {
-  background-color: #796D5B;
+  background-color: #796d5b;
   padding: 0px;
 }
 
-#cardCol .card{
-  background-color: #F8ECDB;
+#cardCol .card {
+  background-color: #f8ecdb;
   border: 2px solid #575046;
   background-image: url("https://www.transparenttextures.com/patterns/cloth-alike.png");
 
@@ -205,7 +202,7 @@ path {
 #logo {
   max-width: 10%;
   min-width: 75px;
-} 
+}
 
 #logoText {
   width: 100%;
@@ -222,19 +219,19 @@ path {
 }
 
 @media screen and (max-width: 600px) {
-  .card-title h5{
+  .card-title h5 {
     font-size: x-small;
   }
 
-  .card-subtitle h6{
+  .card-subtitle h6 {
     font-size: x-small;
   }
 
-  .card-text{
+  .card-text {
     font-size: x-small;
   }
 
-  .cardDate{
+  .cardDate {
     font-size: x-small;
   }
 
@@ -255,12 +252,11 @@ path {
   /* #input {
     width: 75px;
   } */
+}
 
- }
+/* react-transition-group classes */
 
- /* react-transition-group classes */
-
- .page-enter {
+.page-enter {
   opacity: 0;
 }
 
