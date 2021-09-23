@@ -171,6 +171,14 @@ path {
 
 } */
 
+.selected path{
+  fill: blue;
+}
+
+.selected {
+  z-index: 2;
+}
+
 #mapCont > div {
   /* border-radius: 25px; */
 }
