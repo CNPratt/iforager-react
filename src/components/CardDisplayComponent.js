@@ -20,8 +20,6 @@ export class CardDisplay extends Component {
   }
 
   handleMarkerClick = (id) => {
-    (document.getElementById(`overlay${id}`).style.display =
-    "initial")
     this.setState({
       selected: this.state.observations
         .filter((obs) => obs.trueID === id)
