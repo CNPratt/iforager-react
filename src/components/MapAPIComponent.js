@@ -15,7 +15,7 @@ export function SimpleMap(props) {
     <Marker
       width={25}
       anchor={element[0]}
-      // color={element[1] === props.selectedMarker ? "blue" : "green"}
+      color={element[1] === props.selectedMarker ? "blue" : "green"}
       color="green"
       // style={
       //   element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
