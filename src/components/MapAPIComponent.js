@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Map, Marker, Overlay } from "pigeon-maps";
 
 export function SimpleMap(props) {
-  let markers = [];
+  // let markers = [];
   let overlays = [];
   let positArray = props.observations.map((obs) => [
     [obs.obsLat, obs.obsLon],
@@ -11,7 +11,7 @@ export function SimpleMap(props) {
 
   // console.log('rendered');
 
-  markers = positArray.map((element) => (
+  const markers = positArray.map((element) => (
     <Marker
       width={25}
       anchor={element[0]}
@@ -20,13 +20,13 @@ export function SimpleMap(props) {
         element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
       }
       key={`ma${element[1]}`}
-      onMouseOver={() =>
-        (document.getElementById(`overlay${element[1]}`).style.display =
-          "initial")
-      }
-      onMouseOut={() =>
-        (document.getElementById(`overlay${element[1]}`).style.display = "none")
-      }
+      // onMouseOver={() =>
+      //   (document.getElementById(`overlay${element[1]}`).style.display =
+      //     "initial")
+      // }
+      // onMouseOut={() =>
+      //   (document.getElementById(`overlay${element[1]}`).style.display = "none")
+      // }
       onClick={() => {
         props.handler(element[1]);
       }}
