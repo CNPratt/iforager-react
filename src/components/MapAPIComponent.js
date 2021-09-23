@@ -9,26 +9,25 @@ export function SimpleMap(props) {
     obs.trueID,
   ]);
 
-  console.log('simplemap rendered');
+  console.log("simplemap rendered");
 
   const markers = positArray.map((element) => (
     <Marker
       width={25}
       anchor={element[0]}
-      color={element[1] === props.selectedMarker ? "blue" : "green"}
-      // color="green"
+      // color={element[1] === props.selectedMarker ? "blue" : "green"}
+      color="green"
       // style={
       //   element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
       // }
       key={`ma${element[1]}`}
-
-      // onMouseOver={() =>
-      //   (document.getElementById(`overlay${element[1]}`).style.display =
-      //     "initial")
-      // }
-      // onMouseOut={() =>
-      //   (document.getElementById(`overlay${element[1]}`).style.display = "none")
-      // }
+      onMouseOver={() =>
+        (document.getElementById(`overlay${element[1]}`).style.display =
+          "initial")
+      }
+      onMouseOut={() =>
+        (document.getElementById(`overlay${element[1]}`).style.display = "none")
+      }
 
       onClick={() => {
         props.handler(element[1]);
