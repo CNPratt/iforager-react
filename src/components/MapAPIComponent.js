@@ -20,10 +20,10 @@ export function SimpleMap(props) {
 
       color="green"
 
-      // style={
-      //   element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
-      // }
-      
+      style={
+        element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
+      }
+
       key={`ma${element[1]}`}
       onMouseOver={() =>
         (document.getElementById(`overlay${element[1]}`).style.display =
