@@ -22,7 +22,6 @@ export class CardDisplay extends Component {
   }
 
   handleMarkerClick = (id) => {
-
     // console.log(id)
 
     this.setState({
@@ -46,7 +45,7 @@ export class CardDisplay extends Component {
       observations: [],
       selected: null,
       selectedMarker: null,
-      loading: true
+      loading: true,
     });
 
     getFile(this.props.latlon, this.props.type)
@@ -54,15 +53,25 @@ export class CardDisplay extends Component {
         this.setState({
           observations: value,
           errorMsg: null,
-          loading: false
+          loading: false,
         });
       })
       .catch((error) => {
-
         this.setState({
-          errorMsg:
-            "Sorry! You have been temporarily blocked by iNaturalist due to request frequency. Please wait a minute or two and try again.",
-          loading: false
+          errorMsg: (
+            <div className="container">
+              <div className="row" id="errorDisplay">
+                <div className="col d-flex justify-content-center mx-5 mt-5 mb-2">
+                  <div>
+                    Sorry! You have encountered an error. You may have been temporarily blocked by iNaturalist due
+                    to request frequency. Please wait a minute or two and try
+                    again.
+                  </div>
+                </div>
+              </div>
+            </div>
+          ),
+          loading: false,
         });
 
         console.log(error);
@@ -88,12 +97,15 @@ export class CardDisplay extends Component {
     //        console.log("carddisplay props",  this.props);
     //        console.log("carddisplay state",  this.state);
 
-    console.log(this.state.loading)
+    console.log(this.state.loading);
 
     if (this.state.errorMsg) {
       return (
         <div>
-          <TitleDisplay typeName={this.props.type} />
+          <TitleDisplay
+            typeName={this.props.type}
+            error={this.state.errorMsg}
+          />
 
           <div className="d-flex justify-content-center">
             {this.state.errorMsg}.
@@ -105,7 +117,10 @@ export class CardDisplay extends Component {
     if (this.state.observations) {
       return (
         <div className="row-fluid" id="cardDisplayMain">
-          <TitleDisplay typeName={this.props.type} loading={this.state.loading} />
+          <TitleDisplay
+            typeName={this.props.type}
+            loading={this.state.loading}
+          />
 
           {/* <SimpleMap
             latlon={this.props.latlon}

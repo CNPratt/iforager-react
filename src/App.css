@@ -131,6 +131,14 @@ path {
   background-image: url("../src/textures/cloth-alike.png");
 }
 
+#errorDisplay {
+  background-color: #f8ecdb;
+  border: 5px solid #575046;
+  border-radius: 25px;
+  padding-bottom: 25px;
+  background-image: url("../src/textures/cloth-alike.png");
+}
+
 #pageTitle {
   padding-top: 5px;
   font-size: xx-large;

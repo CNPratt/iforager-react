@@ -30,7 +30,7 @@ class Header extends Component {
 
     return (
       <div className="header sticky-top">
-        <Navbar id="navID" className="navbar-expand-md navbar-light py-0">
+        <Navbar id="navID" className="navbar-expand-lg navbar-light py-0">
           <img
             alt="iForager icon"
             src="../imgs/icon.svg"
