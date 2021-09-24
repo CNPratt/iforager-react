@@ -8,7 +8,8 @@ export function TitleDisplay(props) {
     >
       <div className="row">
         <div className="col d-flex align-items-middle" id="titleCont">
-          <Fade in className="d-flex">
+          {/* <Fade in className="d-flex"> */}
+          {!props.loading ? (
             <img
               alt=""
               height="50px"
@@ -16,7 +17,15 @@ export function TitleDisplay(props) {
               src={`../imgs/${props.typeName}.svg`}
               className="mb-0"
             />
-            <div className="">{props.typeName.toUpperCase()}</div>
+          ) : (
+            <div className="fa">
+              <i className="fa fa-spinner fa-pulse mt-2" fill="green"></i>
+            </div>
+          )}
+          <div className="">
+            {props.loading ? " LOADING " : props.typeName.toUpperCase()}
+          </div>
+          {!props.loading ? (
             <img
               alt=""
               height="50px"
@@ -24,7 +33,13 @@ export function TitleDisplay(props) {
               src={`../imgs/${props.typeName}.svg`}
               className="mb-0"
             />
-          </Fade>
+          ) : (
+            <div className="fa">
+              <i className="fa fa-spinner fa-pulse mt-2" fill="green"></i>
+            </div>
+          )}
+
+          {/* </Fade> */}
         </div>
       </div>
     </div>

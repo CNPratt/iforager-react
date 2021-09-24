@@ -17,6 +17,7 @@ export class CardDisplay extends Component {
       selected: null,
       selectedMarker: null,
       errorMsg: null,
+      loading: false,
     };
   }
 
@@ -45,6 +46,7 @@ export class CardDisplay extends Component {
       observations: [],
       selected: null,
       selectedMarker: null,
+      loading: true
     });
 
     getFile(this.props.latlon, this.props.type)
@@ -52,12 +54,15 @@ export class CardDisplay extends Component {
         this.setState({
           observations: value,
           errorMsg: null,
+          loading: false
         });
       })
       .catch((error) => {
+
         this.setState({
           errorMsg:
             "Sorry! You have been temporarily blocked by iNaturalist due to request frequency. Please wait a minute or two and try again.",
+          loading: false
         });
 
         console.log(error);
@@ -83,6 +88,8 @@ export class CardDisplay extends Component {
     //        console.log("carddisplay props",  this.props);
     //        console.log("carddisplay state",  this.state);
 
+    console.log(this.state.loading)
+
     if (this.state.errorMsg) {
       return (
         <div>
@@ -98,7 +105,7 @@ export class CardDisplay extends Component {
     if (this.state.observations) {
       return (
         <div className="row-fluid" id="cardDisplayMain">
-          <TitleDisplay typeName={this.props.type} />
+          <TitleDisplay typeName={this.props.type} loading={this.state.loading} />
 
           {/* <SimpleMap
             latlon={this.props.latlon}
