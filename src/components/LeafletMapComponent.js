@@ -62,6 +62,11 @@ export function MainMap(props) {
   function AddMarkers(props) {
     let map = useMap();
 
+    let homeOptions = {
+      icon: brownIcon,
+      zIndexOffset: "99",
+    };
+
     let markerOptions;
 
     useEffect(() => {
@@ -70,7 +75,7 @@ export function MainMap(props) {
           layer.remove();
         }
 
-        console.log(layer._url);
+        // console.log(layer._url);
       });
 
       positArray.forEach((element) => {
@@ -93,12 +98,15 @@ export function MainMap(props) {
         let marker = L.marker(element[0], markerOptions);
         marker.on("click", () => props.handler(element[1]));
         marker.addTo(map);
-        marker.bindPopup(element[2])
+        marker.bindPopup(element[2]);
 
-        if(element[1] === props.selectedMarker) {
-          marker.openPopup()
+        if (element[1] === props.selectedMarker) {
+          marker.openPopup();
         }
       });
+
+      let home = L.marker(props.position, homeOptions);
+      home.addTo(map);
     });
 
     return <div></div>;
@@ -125,7 +133,7 @@ export function MainMap(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={props.latlon} icon={brownIcon} zIndexOffset="50">
+        {/* <Marker position={props.latlon} icon={brownIcon} zIndexOffset="50">
           <Popup>Home</Popup>
         </Marker>
 
@@ -133,6 +141,7 @@ export function MainMap(props) {
         <AddMarkers
           selectedMarker={props.selectedMarker}
           handler={props.handler}
+          position={props.latlon}
         />
       </MapContainer>
 
