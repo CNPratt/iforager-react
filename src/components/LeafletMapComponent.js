@@ -73,6 +73,7 @@ export function MainMap(props) {
   
 
   return (
+    <div>
       <MapContainer id='mapid' center={props.latlon} zoom={9} scrollWheelZoom={false}>
         {!props.selected ? <ChangeView center={props.latlon} zoom={9} /> : <div/>} 
         <TileLayer
@@ -101,5 +102,12 @@ export function MainMap(props) {
         
         {markers}
       </MapContainer>
+
+<div className="row-fluid w-100 mt-2">
+<div className="col">
+  <div className="selectedCol">{props.selected}</div>
+</div>
+</div>
+</div>
   );
 }
