@@ -45,6 +45,7 @@ export function MainMap(props) {
     <Marker
 
       icon={element[1] === props.selectedMarker ? blueIcon : greenIcon}
+      zIndexOffset={element[1] === props.selectedMarker ? "100" : "0"}
 
       key={element[1]}
 
@@ -88,7 +89,8 @@ export function MainMap(props) {
         </Marker> */}
         <Marker 
         position={props.latlon} 
-         icon={brownIcon} 
+         icon={brownIcon}
+         zIndexOffset="50"
         >
         <Popup>
             Home
