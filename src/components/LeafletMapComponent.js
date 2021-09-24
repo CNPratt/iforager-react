@@ -1,5 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import * as L from "leaflet";
+import { useRef, useEffect } from "react";
+import React from "react";
 
 function ChangeView({ center, zoom }) {
   const map = useMap();
@@ -40,28 +42,69 @@ export function MainMap(props) {
     obs.species,
   ]);
 
-  const markers = positArray.map((element) => (
-    <Marker
-      icon={element[1] === props.selectedMarker ? blueIcon : greenIcon}
-      zIndexOffset={element[1] === props.selectedMarker ? "100" : "0"}
-      key={element[1]}
-      position={element[0]}
-      // color={element[1] === props.selectedMarker ? "blue" : "green"}
+  // const markers = positArray.map((element) => (
+  //   <Marker
+  //     icon={element[1] === props.selectedMarker ? blueIcon : greenIcon}
+  //     zIndexOffset={element[1] === props.selectedMarker ? "100" : "0"}
+  //     key={element[1]}
+  //     position={element[0]}
+  //     eventHandlers={{
+  //       click: (e) => {
+  //         // console.log('marker clicked', e)
+  //         props.handler(element[1]);
+  //       },
+  //     }}
+  //   >
+  //     <Popup>{element[2]}</Popup>
+  //   </Marker>
+  // ));
 
-      // style={
-      //   element[1] === props.selectedMarker ? { zIndex: "2" } : { zIndex: "0" }
-      // }
+  function AddMarkers(props) {
+    let map = useMap();
 
-      eventHandlers={{
-        click: (e) => {
-          // console.log('marker clicked', e)
-          props.handler(element[1]);
-        },
-      }}
-    >
-      <Popup>{element[2]}</Popup>
-    </Marker>
-  ));
+    let markerOptions;
+
+    useEffect(() => {
+      map.eachLayer((layer) => {
+        if (!layer._url) {
+          layer.remove();
+        }
+
+        console.log(layer._url);
+      });
+
+      positArray.forEach((element) => {
+        if (element[1] === props.selectedMarker) {
+          markerOptions = {
+            icon: blueIcon,
+            zIndexOffset: "100",
+            key: element[1],
+          };
+        } else {
+          markerOptions = {
+            icon: greenIcon,
+            zIndexOffset: "0",
+            key: element[1],
+          };
+        }
+
+        // console.log(markerOptions)
+
+        let marker = L.marker(element[0], markerOptions);
+        marker.on("click", () => props.handler(element[1]));
+        marker.addTo(map);
+        marker.bindPopup(element[2])
+
+        if(element[1] === props.selectedMarker) {
+          marker.openPopup()
+        }
+      });
+    });
+
+    return <div></div>;
+  }
+
+  // console.log(markers[positArray.findIndex(element => element[1] === props.selectedMarker)])
 
   return (
     <div>
@@ -86,7 +129,11 @@ export function MainMap(props) {
           <Popup>Home</Popup>
         </Marker>
 
-        {markers}
+        {/* {markers} */}
+        <AddMarkers
+          selectedMarker={props.selectedMarker}
+          handler={props.handler}
+        />
       </MapContainer>
 
       <div className="row-fluid w-100 mt-2">
