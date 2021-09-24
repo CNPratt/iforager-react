@@ -18,8 +18,8 @@ export function TitleDisplay(props) {
               className="mb-0"
             />
           ) : (
-            <div className="fa">
-              <i className="fa fa-spinner fa-pulse mt-2" fill="green"></i>
+            <div className="fa mr-2">
+              <i className="fa fa-compass fa-pulse mt-2" fill="green"></i>
             </div>
           )}
           <div className="">
@@ -34,8 +34,8 @@ export function TitleDisplay(props) {
               className="mb-0"
             />
           ) : (
-            <div className="fa">
-              <i className="fa fa-spinner fa-pulse mt-2" fill="green"></i>
+            <div className="fa ml-2">
+              <i className="fa fa-compass fa-pulse mt-2" fill="green"></i>
             </div>
           )}
 
