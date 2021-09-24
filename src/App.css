@@ -172,6 +172,12 @@ path {
   /* border-radius: 25px; */
 }
 
+#mapid {
+  height: 310px;
+  margin-left: 22px;
+  margin-right: 22px;
+}
+
 #mapCont {
   border: 5px solid #575046;
   /* border-radius: 25px; */
@@ -181,6 +187,7 @@ path {
 #formRow {
   background-color: #796d5b;
   padding: 0px;
+  z-index: 1000;
 }
 
 #cardCol .card {

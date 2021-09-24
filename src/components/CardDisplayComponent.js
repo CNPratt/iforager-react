@@ -6,6 +6,7 @@ import { SimpleMap } from "./MapAPIComponent";
 import { LocationForm } from "./LocationForm";
 import { FadeTransform, Fade, Stagger } from "react-animation-components";
 import { CardStack } from "./CardStackComponent";
+import { MainMap } from "./LeafletMapComponent";
 
 export class CardDisplay extends Component {
   constructor(props) {
@@ -20,6 +21,9 @@ export class CardDisplay extends Component {
   }
 
   handleMarkerClick = (id) => {
+
+    // console.log(id)
+
     this.setState({
       selected: this.state.observations
         .filter((obs) => obs.trueID === id)
@@ -96,7 +100,16 @@ export class CardDisplay extends Component {
         <div className="row-fluid" id="cardDisplayMain">
           <TitleDisplay typeName={this.props.type} />
 
-          <SimpleMap
+          {/* <SimpleMap
+            latlon={this.props.latlon}
+            observations={this.state.observations}
+            selected={this.state.selected}
+            handler={this.handleMarkerClick}
+            selectedMarker={this.state.selectedMarker}
+            transKey={this.props.location.pathname}
+          /> */}
+
+          <MainMap
             latlon={this.props.latlon}
             observations={this.state.observations}
             selected={this.state.selected}
