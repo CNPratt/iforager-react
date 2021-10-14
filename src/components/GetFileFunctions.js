@@ -42,7 +42,7 @@ export const getFile = async (latlon, type) => {
 
   const response = await fetch(
     `
-        https://cors.bridged.cc/https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type].ids}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
+        https://api.inaturalist.org/v1/observations/?taxon_id=${idObject[type].ids}&quality_grade=research&captive=false&lat=${latlon[0]}&lng=${latlon[1]}&radius=24&per_page=200&acc_below=100&geoprivacy=open&photos=true
   
         `
   );
@@ -64,23 +64,24 @@ export async function inputRelay() {
   let geocodedInput;
 
   // event.preventDefault();
-  if(document.getElementById("input").value != "") {
+  if (document.getElementById("input").value != "") {
+    let input = document.getElementById("input").value;
+    let queryInput = encodeURIComponent(input);
 
-  let input = document.getElementById("input").value;
-  let queryInput = encodeURIComponent(input);
+    let file =
+      "https://cors.bridged.cc/https://nominatim.openstreetmap.org/search?format=json&q=" +
+      queryInput;
 
-  let file =
-    "https://cors.bridged.cc/https://nominatim.openstreetmap.org/search?format=json&q=" +
-    queryInput;
+    //    console.log(file);
 
-  //    console.log(file);
-
-  return await fetch(file)
-    .then((response) => response.json())
-    .then((data) => (geocodedInput = data[0]))
-    //        .then(() => console.log(geocodedInput))
-    .then(() => {
-      return geocodedInput;
-    });
-  } else {return null}
+    return await fetch(file)
+      .then((response) => response.json())
+      .then((data) => (geocodedInput = data[0]))
+      //        .then(() => console.log(geocodedInput))
+      .then(() => {
+        return geocodedInput;
+      });
+  } else {
+    return null;
+  }
 }
