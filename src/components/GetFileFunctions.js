@@ -69,8 +69,7 @@ export async function inputRelay() {
     let queryInput = encodeURIComponent(input);
 
     let file =
-      "https://cors.bridged.cc/https://nominatim.openstreetmap.org/search?format=json&q=" +
-      queryInput;
+      "https://nominatim.openstreetmap.org/search?format=json&q=" + queryInput;
 
     //    console.log(file);
 
